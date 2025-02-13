@@ -13,6 +13,9 @@ import { House, ListOrdered, LogIn, Menu, Percent } from "lucide-react";
 const SHEET_SIDES = ["left"] as const
 
 const Header = () => {
+
+    const buttonTexts = [];
+
     return (
         <header className="p-10">
             <div >
