@@ -1,5 +1,3 @@
-// Shadcn/ui
-
 import {
     Sheet,
     SheetContent,
@@ -8,13 +6,31 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./button";
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuIndicator,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
 
-// Icons
 
-import { House, ListOrdered, LogIn, Percent, ShoppingCart, User } from "lucide-react";
+import {
+    House, ListOrdered, LogIn,
+    LogOut, Menu, Percent, 
+    ShoppingCart, User
+} from "lucide-react";
+
 import Link from "next/link";
 
-const Header = () => {
+import { auth, signIn, signOut } from "auth";
+
+const Header = async () => {
+    const session = await auth();
+
     const navItems = [
         { text: "Início", icon: House },
         { text: "Ofertas", icon: Percent },
@@ -30,7 +46,7 @@ const Header = () => {
                             variant="outline"
                             size="icon"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart !h-6 !w-6"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+                            <Menu className="!h-7 !w-7" />
                         </Button>
                     </SheetTrigger>
 
@@ -41,19 +57,19 @@ const Header = () => {
                         <SheetHeader>
                             <SheetTitle className="text-white">Menu</SheetTitle>
                         </SheetHeader>
+
                         <div className="mt-7 flex flex-col gap-4">
                             <Button
                                 variant="outline"
-                                className="w-full text-white justify-start py-5 border-zinc-900 bg-transparent hover:bg-secondary-foreground hover:text-white"
                             >
                                 <LogIn />
                                 Fazer Login
                             </Button>
+
                             {navItems.map((buttonText, index) => (
                                 <Button
                                     key={index}
                                     variant="outline"
-                                    className="w-full text-white justify-start py-5 border-zinc-900 bg-transparent hover:bg-secondary-foreground hover:text-white"
                                 >
                                     <buttonText.icon />
                                     {buttonText.text}
@@ -118,12 +134,67 @@ const Header = () => {
                 </ul>
 
                 <div>
-                    <Link
-                        href="/signin"
-                        className="text-black text-md flex items-center gap-2 py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
-                        <User className="!h-4 !w-4" />
-                        Fazer Login
-                    </Link>
+                    {session && session.user
+                        ? (
+                            <div className="flex items-center gap-4">
+                                <NavigationMenu>
+                                    <NavigationMenuList>
+                                        <NavigationMenuItem className="bg-none">
+                                            <NavigationMenuTrigger className="text-white p-5 border-[1px] border-zinc-700 bg-transparent focus:bg-none">
+                                                Olá {session.user.name}
+                                            </NavigationMenuTrigger>
+
+                                            <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
+                                                <ul className="flex flex-col gap-2">
+                                                    <li>Meus favoritos</li>
+                                                    <li>Meus favoritos</li>
+                                                </ul>
+
+                                                <form
+                                                    action={async () => {
+                                                        "use server";
+                                                        await signOut();
+                                                    }}
+                                                    className="mt-5"
+                                                >
+                                                    <Button
+                                                        type="submit"
+                                                        variant="destructive"
+                                                        className="px-5 text-md font-semibold"
+                                                    >
+                                                        <LogOut />
+                                                        Sair
+                                                    </Button>
+                                                </form>
+                                            </NavigationMenuContent>
+                                        </NavigationMenuItem>
+                                    </NavigationMenuList>
+                                </NavigationMenu>
+
+                                <div>
+                                    <Button className="rounded-full">
+                                        <ShoppingCart className="!h-6 !w-6" />
+                                        <span>Cart(0)</span>
+                                    </Button>
+                                </div>
+                            </div>
+                        )
+                        : (
+                            <form
+                                action={async () => {
+                                    "use server";
+                                    await signIn();
+                                }}
+                            >
+                                <Link
+                                    href="/signin"
+                                    className="text-black text-md flex items-center gap-2 py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
+                                    <User className="!h-4 !w-4" />
+                                    Fazer Login
+                                </Link>
+                            </form>
+                        )
+                    }
                 </div>
             </nav>
         </header>
