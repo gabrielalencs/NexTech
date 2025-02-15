@@ -5,7 +5,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "./button";
+import { Button } from "../ui/button";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -20,7 +20,7 @@ import {
 
 import {
     House, ListOrdered, LogIn,
-    LogOut, Menu, Percent, 
+    LogOut, Menu, Percent,
     ShoppingCart, User
 } from "lucide-react";
 
@@ -183,19 +183,19 @@ const Header = async () => {
                             </div>
                         )
                         : (
-                            <form
-                                action={async () => {
-                                    "use server";
-                                    await signIn();
-                                }}
-                            >
+                            <div className="flex items-center gap-5">
+                                <Link
+                                    href="/signup"
+                                    className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
+                                    Cadastrar
+                                </Link>
+
                                 <Link
                                     href="/signin"
-                                    className="text-black text-md flex items-center gap-2 py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
-                                    <User className="!h-4 !w-4" />
-                                    Fazer Login
+                                    className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
+                                    Entrar
                                 </Link>
-                            </form>
+                            </div>
                         )
                     }
                 </div>
