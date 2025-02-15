@@ -37,6 +37,7 @@ const Header = async () => {
         { text: "Catálogo", icon: ListOrdered }
     ];
 
+
     return (
         <header className="py-10 px-6 flex items-center justify-between lg:px-14 2xl:px-24">
             <div className="lg:hidden">
@@ -45,6 +46,7 @@ const Header = async () => {
                         <Button
                             variant="outline"
                             size="icon"
+                            className="justify-center"
                         >
                             <Menu className="!h-7 !w-7" />
                         </Button>
@@ -94,6 +96,7 @@ const Header = async () => {
                         <Button
                             variant="outline"
                             size="icon"
+                            className="justify-center"
                         >
                             <ShoppingCart className="!h-6 !w-6" />
                         </Button>
