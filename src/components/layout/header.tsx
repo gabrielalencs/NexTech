@@ -31,6 +31,8 @@ import { auth, signIn, signOut } from "auth";
 const Header = async () => {
     const session = await auth();
 
+    console.log("Sessão no Header:", session);
+
     const navItems = [
         { text: "Início", icon: House },
         { text: "Ofertas", icon: Percent },

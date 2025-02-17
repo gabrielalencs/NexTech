@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -6,9 +8,38 @@ import { Separator } from "@/components/ui/separator";
 import ProviderButtons from "@/components/ui/provider-buttons";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import { signIn, useSession } from "next-auth/react";
+
+
+
+
 
 
 const SignInPage = () => {
+    const router = useRouter();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        const result = await signIn("credentials", {
+            email,
+            password,
+            callbackUrl: "/"
+        });
+
+        if (result?.error) {
+            setError("E-mail ou senha incorretos.");
+            return;
+        }
+    };
+
     return (
         <section className="mx-6 mt-8 mb-32 lg:mt-14">
             <Card className="bg-[#0A0A0A] border-[2px] border-zinc-800 mx-auto rounded-lg p-2 w-full max-w-lg">
@@ -23,43 +54,49 @@ const SignInPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div>
-                            <Label htmlFor="email">
-                                E-mail
-                            </Label>
+                            <Label htmlFor="email">E-mail</Label>
                             <Input
                                 type="email"
                                 id="email"
+                                name="email"
                                 placeholder="exemplo@email.com"
                                 required
                                 className="mt-1 border-zinc-700"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
                         <div className="mt-4">
-                            <Label htmlFor="password">
-                                Senha
-                            </Label>
+                            <Label htmlFor="password">Senha</Label>
                             <Input
                                 type="password"
                                 id="password"
+                                name="password"
                                 placeholder="Digite sua senha"
                                 required
                                 className="mt-1 border-zinc-700"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
-                        <Button type="submit" className="mt-8 w-full justify-center font-bold">Entrar</Button>
+                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+                        <Button type="submit" className="mt-8 w-full justify-center font-bold">
+                            Entrar
+                        </Button>
                     </form>
-                    
+
                     <div className="flex items-center gap-6 mt-5">
                         <Separator className="bg-zinc-700" />
                         <span className="text-xs text-zinc-300 uppercase">Ou</span>
                         <Separator className="bg-zinc-700" />
                     </div>
 
-                    <ProviderButtons />
+                    {/* <ProviderButtons /> */}
                 </CardContent>
 
                 <CardFooter className="mt-5">
