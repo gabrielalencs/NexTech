@@ -26,7 +26,7 @@ import {
 
 import Link from "next/link";
 
-import { auth, signIn, signOut } from "auth";
+import { auth, signOut } from "auth";
 
 const Header = async () => {
     const session = await auth();

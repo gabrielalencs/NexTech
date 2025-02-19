@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 
 
@@ -19,7 +19,6 @@ import { signIn, useSession } from "next-auth/react";
 
 
 const SignInPage = () => {
-    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -29,16 +28,23 @@ const SignInPage = () => {
         setError("");
 
         const result = await signIn("credentials", {
+            redirect: false,
             email,
             password,
-            callbackUrl: "/"
         });
 
         if (result?.error) {
-            setError("E-mail ou senha incorretos.");
-            return;
+            if (result.error === "CredentialsSignin") {
+                setError("Usuário ou senha incorretos.");
+            } else {
+                setError(result.error);
+            }
+        } else {
+            window.location.href = "/";
         }
+
     };
+
 
     return (
         <section className="mx-6 mt-8 mb-32 lg:mt-14">

@@ -1,4 +1,4 @@
-
+"use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,10 +10,29 @@ import ProviderButtons from "@/components/ui/provider-buttons";
 import Link from "next/link";
 
 
-import { signIn } from "auth";
+import { useState } from "react";
+import { registerUser } from "@/actions/authActions";
+import { signIn } from "next-auth/react";
 
 
 const SignUpPage = () => {
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (formData: FormData) => {
+        try {
+            await registerUser(formData); 
+            await signIn("credentials", {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                password: formData.get("password"),
+                redirectTo: "/"
+            });
+        } catch (err: any) {
+            setError(err.message); 
+        }
+    };
+
+
     return (
         <section className="mx-6 mt-8 mb-32 lg:mt-14">
             <Card className="bg-[#0A0A0A] border-[2px] border-zinc-800 mx-auto rounded-lg p-2 w-full max-w-lg">
@@ -28,17 +47,7 @@ const SignUpPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                    <form
-                        action={async (formData) => {
-                            "use server"
-                            await signIn("credentials", {
-                                name: formData.get("name"),
-                                email: formData.get("email"),
-                                password: formData.get("password"),
-                                redirectTo: "/"
-                            });
-                        }}
-                    >
+                    <form action={handleSubmit}>
                         <div>
                             <Label htmlFor="name">
                                 Nome
@@ -80,6 +89,8 @@ const SignUpPage = () => {
                                 className="mt-1 border-zinc-700"
                             />
                         </div>
+
+                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
                         <Button type="submit" className="mt-10 w-full justify-center font-bold">Registrar-se</Button>
                     </form>

@@ -14,7 +14,10 @@ const config = {
     adapter: PrismaAdapter(prisma),
     session: { strategy: "jwt" },
     providers: [
-        google,
+        google({
+            clientId: process.env.AUTH_GOOGLE_ID,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET,
+        }),
         CredentialsProvider({
             name: "Credentials",
             credentials: {
@@ -24,28 +27,19 @@ const config = {
             },
             authorize: async (credentials) => {
                 if (!credentials.email || !credentials.password) {
-                    throw new Error("Email e senha são obrigatórios.");
+                    return null
                 }
 
-                // Verifica se o usuário já existe
-                let user = await prisma.user.findUnique({
-                    where: { email: credentials.email as string },
+                const user = await prisma.user.findUnique({
+                    where: { email: String(credentials.email) },
                 });
 
-                // Se o usuário não existir, cria um novo
                 if (!user) {
-                    user = await prisma.user.create({
-                        data: {
-                            name: credentials.name as string,
-                            email: credentials.email as string,
-                            password: credentials.password as string,
-                        },
-                    });
+                    return null
                 }
 
-                // Se o usuário existe, verifica a senha
                 if (user.password !== credentials.password) {
-                    window.alert("Senha incorreta.");
+                    return null
                 }
 
                 return user;
@@ -58,18 +52,19 @@ const config = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-               token.id = String(user.id);
-                token.name = user.name;
-                token.email = user.email;
+                token.id = String(user.id);
+                token.name = String(user.name);
+                token.email = String(user.email);
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                session.user.id = token.id as string;
-                session.user.name = token.name;
-                session.user.email = token.email ?? '';
+                session.user.id = String(token.id);
+                session.user.name = String(token.name);
+                session.user.email = String(token.email);
             }
+
             return session;
         },
     },
