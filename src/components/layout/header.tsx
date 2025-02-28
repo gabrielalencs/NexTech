@@ -9,29 +9,27 @@ import { Button } from "../ui/button";
 import {
     NavigationMenu,
     NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
-    NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 
 
 import {
-    House, ListOrdered, LogIn,
+    House, ListOrdered,
     LogOut, Menu, Percent,
-    ShoppingCart, User
+    ShoppingCart
 } from "lucide-react";
 
 import Link from "next/link";
 
-import { auth, signOut } from "auth";
+import { auth } from "auth";
+
+import { userLogout } from "@/actions/authActions";
+
 
 const Header = async () => {
     const session = await auth();
-
-    console.log("Sessão no Header:", session);
 
     const navItems = [
         { text: "Início", icon: House },
@@ -39,11 +37,12 @@ const Header = async () => {
         { text: "Catálogo", icon: ListOrdered }
     ];
 
-
     return (
-        <header className="py-10 px-6 flex items-center justify-between lg:px-14 2xl:px-24">
+        <header className="py-12 px-6 flex items-center justify-between lg:px-14 lg:py-14 2xl:px-24">
+            {/* Menu Mobile */}
+
             <div className="lg:hidden">
-                <Sheet>
+                <Sheet >
                     <SheetTrigger asChild >
                         <Button
                             variant="outline"
@@ -63,22 +62,31 @@ const Header = async () => {
                         </SheetHeader>
 
                         <div className="mt-7 flex flex-col gap-4">
-                            <Button
-                                variant="outline"
-                            >
-                                <LogIn />
-                                Fazer Login
-                            </Button>
+                            <div className="flex flex-col gap-5">
+                                <Link
+                                    href="/signup"
+                                    className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
+                                    Cadastrar
+                                </Link>
 
-                            {navItems.map((buttonText, index) => (
-                                <Button
-                                    key={index}
-                                    variant="outline"
-                                >
-                                    <buttonText.icon />
-                                    {buttonText.text}
-                                </Button>
-                            ))}
+                                <Link
+                                    href="/signin"
+                                    className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
+                                    Entrar
+                                </Link>
+                            </div>
+
+                            {(session && session.user) && (
+                                navItems.map((buttonText, index) => (
+                                    <Button
+                                        key={index}
+                                        variant="outline"
+                                    >
+                                        <buttonText.icon />
+                                        {buttonText.text}
+                                    </Button>
+                                ))
+                            )}
                         </div>
                     </SheetContent>
                 </Sheet>
@@ -126,21 +134,23 @@ const Header = async () => {
                 </Sheet>
             </div>
 
-            <nav className="hidden lg:flex lg:items-center gap-20">
-                <ul className="flex gap-12 items-center">
-                    {navItems.map((buttonText, index) => (
-                        <li
-                            key={index}
-                            className="inline-block text-white duration-300 text-lg cursor-pointer hover:text-primary"
-                        >
-                            {buttonText.text}
-                        </li>
-                    ))}
-                </ul>
+            {/* Menu Desktop */}
 
-                <div>
-                    {session && session.user
-                        ? (
+            <nav className="hidden lg:flex lg:items-center gap-20">
+                {(session && session.user)
+                    ? (
+                        <>
+                            <ul className="flex gap-12 items-center">
+                                {navItems.map((buttonText, index) => (
+                                    <li
+                                        key={index}
+                                        className="inline-block text-white duration-300 text-lg cursor-pointer hover:text-primary"
+                                    >
+                                        {buttonText.text}
+                                    </li>
+                                ))}
+                            </ul>
+                            
                             <div className="flex items-center gap-4">
                                 <NavigationMenu>
                                     <NavigationMenuList>
@@ -155,13 +165,7 @@ const Header = async () => {
                                                     <li>Meus favoritos</li>
                                                 </ul>
 
-                                                <form
-                                                    action={async () => {
-                                                        "use server";
-                                                        await signOut();
-                                                    }}
-                                                    className="mt-5"
-                                                >
+                                                <form action={userLogout} className="mt-5">
                                                     <Button
                                                         type="submit"
                                                         variant="destructive"
@@ -183,24 +187,24 @@ const Header = async () => {
                                     </Button>
                                 </div>
                             </div>
-                        )
-                        : (
-                            <div className="flex items-center gap-5">
-                                <Link
-                                    href="/signup"
-                                    className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
-                                    Cadastrar
-                                </Link>
+                        </>
+                    )
+                    : (
+                        <div className="flex items-center gap-5">
+                            <Link
+                                href="/signup"
+                                className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
+                                Cadastrar
+                            </Link>
 
-                                <Link
-                                    href="/signin"
-                                    className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
-                                    Entrar
-                                </Link>
-                            </div>
-                        )
-                    }
-                </div>
+                            <Link
+                                href="/signin"
+                                className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
+                                Entrar
+                            </Link>
+                        </div>
+                    )
+                }
             </nav>
         </header>
     )

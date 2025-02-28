@@ -10,7 +10,7 @@ import ProviderButtons from "@/components/ui/provider-buttons";
 import Link from "next/link";
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registerUser } from "@/actions/authActions";
 import { signIn } from "next-auth/react";
 
@@ -20,7 +20,7 @@ const SignUpPage = () => {
 
     const handleSubmit = async (formData: FormData) => {
         try {
-            await registerUser(formData); 
+            await registerUser(formData);
             await signIn("credentials", {
                 name: formData.get("name"),
                 email: formData.get("email"),
@@ -28,9 +28,15 @@ const SignUpPage = () => {
                 redirectTo: "/"
             });
         } catch (err: any) {
-            setError(err.message); 
+            setError(err.message);
         }
     };
+
+    useEffect(() => {
+        document.querySelector(".overlayMenuMobile")?.classList?.add("remove-screen");
+        document.querySelector(".menuMobile")?.classList?.add("remove-screen");
+        document.body?.classList?.add("remove-hidden-scroll");
+    }, []);
 
 
     return (

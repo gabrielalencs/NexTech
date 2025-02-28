@@ -86,4 +86,4 @@ export const providerMap: ProviderWithId[] = config.providers.map(provider => {
         id: typedProvider.id,
         name: typedProvider.name
     };
-});
+}).filter(provider => provider.id !== 'credentials'); 

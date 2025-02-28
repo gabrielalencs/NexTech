@@ -8,14 +8,9 @@ import { Separator } from "@/components/ui/separator";
 import ProviderButtons from "@/components/ui/provider-buttons";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { signIn } from "next-auth/react";
-
-
-
-
 
 
 const SignInPage = () => {
@@ -42,7 +37,6 @@ const SignInPage = () => {
         } else {
             window.location.href = "/";
         }
-
     };
 
 
@@ -102,7 +96,7 @@ const SignInPage = () => {
                         <Separator className="bg-zinc-700" />
                     </div>
 
-                    {/* <ProviderButtons /> */}
+                    <ProviderButtons />
                 </CardContent>
 
                 <CardFooter className="mt-5">

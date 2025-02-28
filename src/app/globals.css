@@ -11,6 +11,18 @@ header {
     margin: 0 auto;
 }
 
+.remove-screen {
+    display: none !important;
+}
+
+.remove-hidden-scroll {
+    overflow-y: scroll !important;
+}
+
+.remove-hidden-scroll[data-scroll-locked] {
+    overflow-y: scroll !important;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;
