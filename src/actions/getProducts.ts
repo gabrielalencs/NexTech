@@ -25,11 +25,15 @@ export async function getKeyboardProducts() {
 };
 
 export async function getMouseProducts() {
-    return await prisma.product.findMany({
+    const mouses = await prisma.product.findMany({
         where: {
             category: {
                 name: "Mouses",
             },
         },
+        take: 10
     });
+
+    console.log("Mouses encontrados:", mouses.length); // Depuração
+    return mouses;
 };

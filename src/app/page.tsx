@@ -28,6 +28,7 @@ export default async function Home() {
     const discountedProducts = await getDiscountedProducts();
     const keyboardList = await getKeyboardProducts();
     const mousesList = await getMouseProducts();
+    
 
     return (
         <main>

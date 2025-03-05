@@ -10,7 +10,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { Products } from "@/types/products";
+import { Products } from "@/types/Products";
 
 import { ArrowDown } from "lucide-react";
 
@@ -68,7 +68,7 @@ const ProductCarousel = ({ productList }: ProductCarouselProps) => {
                                         <ArrowDown className="!h-4 !w-4" />
                                     </div>
                                 )}
-                                
+
                                 <img
                                     src={product.imageUrls[0]}
                                     alt={`Imagem do ${product.name}`}
