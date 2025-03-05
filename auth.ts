@@ -6,7 +6,7 @@ import google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 
-import CredentialsProvider from "next-auth/providers/credentials"; // Nome correto do provider
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const prisma = new PrismaClient();
 
