@@ -8,7 +8,7 @@ import { PrismaClient } from "@prisma/client";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 const config = {
     adapter: PrismaAdapter(prisma),

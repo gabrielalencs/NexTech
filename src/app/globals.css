@@ -4,7 +4,6 @@
 
 body {
     background-color: #0A0A0A;
-    margin-bottom: 1000px;
 }
 
 header {
@@ -22,6 +21,12 @@ header {
 
 .remove-hidden-scroll[data-scroll-locked] {
     overflow-y: scroll !important;
+}
+
+.bg-banner-free-shipping {
+    background-image: url('/free-shipping-banner.png');
+    background-size: cover;
+    background-position: 0 43%;
 }
 
 @layer base {
@@ -84,10 +89,11 @@ header {
 
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
 }

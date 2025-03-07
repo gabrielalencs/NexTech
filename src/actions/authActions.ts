@@ -1,10 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "auth";
-
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma, signIn, signOut } from "auth";
 
 export async function signInAction(formData: FormData) {
     const providerId = formData.get("providerId") as string;

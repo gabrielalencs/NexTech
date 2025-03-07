@@ -1,8 +1,6 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "auth";
 
 export async function getDiscountedProducts() {
     return await prisma.product.findMany({
@@ -25,15 +23,11 @@ export async function getKeyboardProducts() {
 };
 
 export async function getMouseProducts() {
-    const mouses = await prisma.product.findMany({
+    return await prisma.product.findMany({
         where: {
             category: {
                 name: "Mouses",
             },
         },
-        take: 10
     });
-
-    console.log("Mouses encontrados:", mouses.length); // Depuração
-    return mouses;
 };
