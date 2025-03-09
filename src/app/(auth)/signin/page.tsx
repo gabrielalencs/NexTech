@@ -1,19 +1,16 @@
-"use client"
+"use client";
+
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-
-
-import Link from "next/link";
-import { useState } from "react";
-
-import { signIn } from "next-auth/react";
 import ProviderButtons from "@/components/ui/provider-buttons";
 
-
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 
 const SignInPage = () => {
@@ -99,8 +96,6 @@ const SignInPage = () => {
                         <span className="text-xs text-zinc-300 uppercase">Ou</span>
                         <Separator className="bg-zinc-700" />
                     </div>
-
-      
 
                     <ProviderButtons />
                 </CardContent>

@@ -32,8 +32,8 @@ const Header = async () => {
     const session = await auth();
 
     const navItems = [
-        { text: "Início", icon: House },
-        { text: "Ofertas", icon: Percent },
+        { text: "Início", icon: House, link: "/" },
+        { text: "Ofertas", icon: Percent, link: "/deals" },
         { text: "Catálogo", icon: ListOrdered }
     ];
 
@@ -141,12 +141,14 @@ const Header = async () => {
                     ? (
                         <>
                             <ul className="flex gap-12 items-center">
-                                {navItems.map((buttonText, index) => (
+                                {navItems.map((item, index) => (
                                     <li
                                         key={index}
                                         className="inline-block text-white duration-300 text-lg cursor-pointer hover:text-primary"
                                     >
-                                        {buttonText.text}
+                                        <a href={item.link}>
+                                            {item.text}
+                                        </a>
                                     </li>
                                 ))}
                             </ul>

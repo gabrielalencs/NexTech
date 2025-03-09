@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { Products } from "@/types/Products";
+
 import {
     Carousel,
     CarouselContent,
@@ -9,12 +11,8 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
-import { Products } from "@/types/Products";
-
-import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 import ProductItem from "@/components/ui/product-item";
+
 
 interface ProductCarouselProps {
     productList: Products[];
