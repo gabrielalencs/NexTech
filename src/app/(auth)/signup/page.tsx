@@ -1,22 +1,23 @@
 "use client"
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import ProviderButtons from "@/components/ui/provider-buttons";
-
 
 import Link from "next/link";
-
 
 import { useEffect, useState } from "react";
 import { registerUser } from "@/actions/authActions";
 import { signIn } from "next-auth/react";
 
+import ProviderButtons from "@/components/ui/provider-buttons";
+
 
 const SignUpPage = () => {
     const [error, setError] = useState("");
+
 
     const handleSubmit = async (formData: FormData) => {
         try {
@@ -107,7 +108,9 @@ const SignUpPage = () => {
                         <Separator className="bg-zinc-700" />
                     </div>
 
+             
                     <ProviderButtons />
+
                 </CardContent>
 
                 <CardFooter className="mt-5">

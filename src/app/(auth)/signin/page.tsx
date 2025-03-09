@@ -5,18 +5,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import ProviderButtons from "@/components/ui/provider-buttons";
+
 
 import Link from "next/link";
 import { useState } from "react";
 
 import { signIn } from "next-auth/react";
+import ProviderButtons from "@/components/ui/provider-buttons";
+
+
 
 
 const SignInPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -95,6 +99,8 @@ const SignInPage = () => {
                         <span className="text-xs text-zinc-300 uppercase">Ou</span>
                         <Separator className="bg-zinc-700" />
                     </div>
+
+      
 
                     <ProviderButtons />
                 </CardContent>

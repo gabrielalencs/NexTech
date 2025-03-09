@@ -8,12 +8,11 @@ import MainBanner from "../../../public/banner-hero.webp"
 import { Button, buttonVariants } from "@/components/ui/button";
 
 
-import ProductCarousel from "@/app/(home)/components/product-carousel";
-
 import { getDiscountedProducts, getKeyboardProducts, getMouseProducts } from "@/actions/getProducts";
 
 import Image from "next/image";
 import Link from "next/link";
+import ProductCarousel from "./components/product-carousel";
 
 
 export default async function Home() {
@@ -39,6 +38,7 @@ export default async function Home() {
                     alt="Banner da Loja"
                     className="mx-auto rounded-md w-full lg:rounded-none"
                     priority
+                    
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1296px"
                 />
             </div>

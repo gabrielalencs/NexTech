@@ -1,6 +1,9 @@
 "use server";
 
-import { prisma } from "auth";
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function getDiscountedProducts() {
     return await prisma.product.findMany({
