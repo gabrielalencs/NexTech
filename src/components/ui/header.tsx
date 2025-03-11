@@ -34,7 +34,7 @@ const Header = async () => {
     const navItems = [
         { text: "Início", icon: House, link: "/" },
         { text: "Ofertas", icon: Percent, link: "/deals" },
-        { text: "Catálogo", icon: ListOrdered }
+        { text: "Catálogo", icon: ListOrdered, link: "/catalog" },
     ];
 
     return (

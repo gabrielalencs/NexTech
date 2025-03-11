@@ -5,7 +5,7 @@ import {
 
 import MainBanner from "../../../public/banner-hero.webp"
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 
 import { getDiscountedProducts, getKeyboardProducts, getMouseProducts } from "@/actions/getProducts";
@@ -18,11 +18,11 @@ import ProductCarousel from "./components/product-carousel";
 export default async function Home() {
     const productCategoriesButtons = [
         { id: 1, name: "Mouses", slug: "mouses", icon: <Mouse /> },
-        { id: 2, name: "Teclados", slug: "keyboards", icon: <Keyboard /> },
-        { id: 3, name: "Fones", slug: "headphones", icon: <Headphones /> },
+        { id: 2, name: "Teclados", slug: "teclados", icon: <Keyboard /> },
+        { id: 3, name: "Fones", slug: "fones", icon: <Headphones /> },
         { id: 4, name: "Mousepads", slug: "mousepads", icon: <Touchpad /> },
-        { id: 5, name: "Monitores", slug: "monitors", icon: <Monitor /> },
-        { id: 6, name: "Alto falantes", slug: "speakers", icon: <Speaker /> },
+        { id: 5, name: "Monitores", slug: "monitores", icon: <Monitor /> },
+        { id: 6, name: "Caixas de som", slug: "caixas-de-som", icon: <Speaker /> },
     ];
 
     const discountedProducts = await getDiscountedProducts();
@@ -38,7 +38,6 @@ export default async function Home() {
                     alt="Banner da Loja"
                     className="mx-auto rounded-md w-full lg:rounded-none"
                     priority
-                    
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1296px"
                 />
             </div>

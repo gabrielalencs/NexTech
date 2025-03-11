@@ -1,6 +1,6 @@
+import { Percent } from "lucide-react";
 import { getDiscountedProducts } from "@/actions/getProducts";
 import ProductItem from "@/components/ui/product-item";
-import { Percent } from "lucide-react";
 
 
 const ProductDealsPage = async () => {

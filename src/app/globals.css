@@ -29,6 +29,11 @@ header {
     background-position: 0 43%;
 }
 
+.categories-gradient {
+    background: rgb(176, 145, 21);
+    background: linear-gradient(270deg, rgba(176, 145, 21, 1) 27%, rgba(226, 184, 20, 1) 60%);
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;

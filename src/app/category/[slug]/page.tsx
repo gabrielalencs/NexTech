@@ -8,10 +8,10 @@ import {
 
 const categoryIcons: { [key: string]: React.ComponentType<any> } = {
     mouses: Mouse,
-    keyboards: Keyboard,
-    monitors: Monitor,
-    headphones: Headphones,
-    speakers: Speaker,
+    teclados: Keyboard,
+    monitores: Monitor,
+    fones: Headphones,
+    "caixas-de-som": Speaker,
     touchpads: Touchpad,
 };
 
@@ -30,7 +30,7 @@ const CategoryProducts = async ({ params }: any) => {
     const Icon = category && categoryIcons[category.slug as keyof typeof categoryIcons];
 
     return (
-        <section className="text-white max-w-[1296px] h-min-[80vh] mx-auto px-6">
+        <section className="text-white max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
                 {Icon && <Icon />}
                 {category?.name}
