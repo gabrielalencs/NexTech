@@ -17,7 +17,13 @@ const categoryIcons: { [key: string]: React.ComponentType<any> } = {
     touchpads: Touchpad,
 };
 
-const CategoryProducts = async ({ params }: any) => {
+interface ProductDetailsPageProps {
+    params: {
+        slug: string;
+    };
+}
+
+const CategoryProducts = async ({ params }: ProductDetailsPageProps) => {
     // const session = await auth();
 
     // if (!session) return redirect("/signin");

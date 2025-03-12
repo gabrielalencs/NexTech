@@ -1,6 +1,8 @@
 import { Products } from "@/types/Products";
 import { ArrowDown } from "lucide-react";
+
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProductItemProps {
     productInformation: Products;
@@ -8,7 +10,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ productInformation }: ProductItemProps) => {
     return (
-        <div>
+        <Link href={`/product/${productInformation.slug}`}>
             <div className="bg-[#171717] w-full h-[200px] flex items-center justify-center relative rounded-md duration-300 cursor-pointer hover:bg-[#121212]">
                 {productInformation.discountPercentage != 0 && (
                     <div className="bg-primary text-black py-1 px-2 w-max flex items-center flex-row-reverse gap-1 text-xs font-semibold rounded-full absolute top-4 left-4">
@@ -37,7 +39,7 @@ const ProductItem = ({ productInformation }: ProductItemProps) => {
                     </span>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
