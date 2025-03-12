@@ -18,11 +18,11 @@ import ProductCarousel from "./components/product-carousel";
 export default async function Home() {
     const productCategoriesButtons = [
         { id: 1, name: "Mouses", slug: "mouses", icon: <Mouse /> },
-        { id: 2, name: "Teclados", slug: "teclados", icon: <Keyboard /> },
-        { id: 3, name: "Fones", slug: "fones", icon: <Headphones /> },
+        { id: 2, name: "Teclados", slug: "keyboards", icon: <Keyboard /> },
+        { id: 3, name: "Fones", slug: "headphones", icon: <Headphones /> },
         { id: 4, name: "Mousepads", slug: "mousepads", icon: <Touchpad /> },
-        { id: 5, name: "Monitores", slug: "monitores", icon: <Monitor /> },
-        { id: 6, name: "Caixas de som", slug: "caixas-de-som", icon: <Speaker /> },
+        { id: 5, name: "Monitores", slug: "monitors", icon: <Monitor /> },
+        { id: 6, name: "Caixas de som", slug: "speakers", icon: <Speaker /> },
     ];
 
     const discountedProducts = await getDiscountedProducts();

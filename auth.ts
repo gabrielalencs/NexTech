@@ -46,6 +46,7 @@ const config = {
             },
         }),
     ],
+    trustHost: true,
     pages: {
         signIn: "/signIn",
     },

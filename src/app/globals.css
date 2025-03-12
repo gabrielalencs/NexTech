@@ -34,6 +34,63 @@ header {
     background: linear-gradient(270deg, rgba(176, 145, 21, 1) 27%, rgba(226, 184, 20, 1) 60%);
 }
 
+
+.loadership_KHKNP {
+    display: flex;
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+
+.loadership_KHKNP div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 70px;
+    height: 70px;
+    border: 10px solid #ffffff33;
+    border-radius: 50%;
+}
+
+.loadership_KHKNP div:not(:nth-child(1)) {
+    clip-path: polygon(50% 50%, 0 0, 80.00% 0);
+    border: 10px solid #ffffff;
+    animation: loadership_KHKNP_spin 1.4s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.loadership_KHKNP div:nth-child(2) {
+    animation-delay: 0.00s;
+}
+
+.loadership_KHKNP div:nth-child(3) {
+    animation-delay: -0.06s;
+}
+
+.loadership_KHKNP div:nth-child(4) {
+    animation-delay: -0.11s;
+}
+
+.loadership_KHKNP div:nth-child(5) {
+    animation-delay: -0.17s;
+}
+
+.loadership_KHKNP div:nth-child(6) {
+    animation-delay: -0.22s;
+}
+
+
+@keyframes loadership_KHKNP_spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 @layer base {
     :root {
         --background: 0 0% 100%;

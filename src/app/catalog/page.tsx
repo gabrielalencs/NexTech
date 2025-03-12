@@ -1,11 +1,15 @@
 import { LayoutGrid } from "lucide-react"
-import { prisma } from "auth";
+import { auth, prisma } from "auth";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 
 const CatalogPage = async () => {
     const categories = await prisma.category.findMany();
+    const session = await auth();
+
+    if (!session) return redirect("/signin");
 
 
     return (

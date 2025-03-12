@@ -1,10 +1,15 @@
 import { Percent } from "lucide-react";
 import { getDiscountedProducts } from "@/actions/getProducts";
 import ProductItem from "@/components/ui/product-item";
+import { auth } from "auth";
+import { redirect } from "next/navigation";
 
 
 const ProductDealsPage = async () => {
     const discountedProducts = await getDiscountedProducts();
+    const session = await auth();
+
+    if (!session) return redirect("/signin");
 
     return (
         <section className="text-white max-w-[1296px] mx-auto px-6">
