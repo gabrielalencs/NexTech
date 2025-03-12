@@ -18,9 +18,9 @@ const categoryIcons: { [key: string]: React.ComponentType<any> } = {
 };
 
 const CategoryProducts = async ({ params }: any) => {
-    const session = await auth();
+    // const session = await auth();
 
-    if (!session) return redirect("/signin");
+    // if (!session) return redirect("/signin");
 
     const { slug } = await params;
 

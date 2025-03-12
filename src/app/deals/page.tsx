@@ -7,9 +7,9 @@ import { redirect } from "next/navigation";
 
 const ProductDealsPage = async () => {
     const discountedProducts = await getDiscountedProducts();
-    const session = await auth();
+    // const session = await auth();
 
-    if (!session) return redirect("/signin");
+    // if (!session) return redirect("/signin");
 
     return (
         <section className="text-white max-w-[1296px] mx-auto px-6">

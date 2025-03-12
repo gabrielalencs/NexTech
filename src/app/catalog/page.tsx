@@ -7,9 +7,9 @@ import { redirect } from "next/navigation";
 
 const CatalogPage = async () => {
     const categories = await prisma.category.findMany();
-    const session = await auth();
+    // const session = await auth();
 
-    if (!session) return redirect("/signin");
+    // if (!session) return redirect("/signin");
 
 
     return (
