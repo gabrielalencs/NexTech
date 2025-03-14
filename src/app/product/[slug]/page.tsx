@@ -3,6 +3,7 @@ import FavoriteButton from "@/app/product/[slug]/components/favorite-button";
 import { prisma } from "auth";
 import { ArrowDown, ChevronLeft, ChevronRight, HeartIcon, Truck } from "lucide-react";
 import CounterButton from "./components/counter-button";
+import ProductCarousel from "@/app/(home)/components/product-carousel";
 
 
 interface ProductDetailsPageProps {
@@ -34,13 +35,13 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
 
     return (
         <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
-            <div className="flex flex-col gap-10">
-                <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-10 lg:flex-row">
+                <div className="flex flex-col gap-8 lg:flex-[1.3]">
                     <div className="bg-[#171717] flex items-center justify-center py-10 rounded-md">
                         <img
                             src={product?.imageUrls[0]}
                             alt={`Image do produto: ${product?.name}`}
-                            className="w-9/12 max-w-[520px]"
+                            className="w-9/12 max-w-[420px]"
                         />
                     </div>
 
@@ -60,17 +61,17 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                     </div>
                 </div>
 
-                <div>
+                <div className="max-w-[600px] md:mx-auto lg:flex-1">
                     <div className="flex justify-between">
                         <div>
-                            <h3 className="text-lg font-medium text-white">{product?.name}</h3>
+                            <h3 className="text-lg sm:text-xl font-medium text-white md:text-2xl">{product?.name}</h3>
 
                             <div className="flex items-start gap-2 mt-2">
                                 <div className="flex flex-col gap-1 text-white">
-                                    <span className="truncate font-semibold text-xl">
+                                    <span className="truncate font-semibold text-xl md:text-2xl">
                                         R$ {(product?.basePrice - (product?.basePrice * product?.discountPercentage / 100)).toFixed(2)}
                                     </span>
-                                    <span className="truncate text-xs line-through opacity-75">
+                                    <span className="truncate text-xs line-through opacity-75 md:text-base">
                                         De: R$ {(product?.basePrice).toFixed(2)}
                                     </span>
                                 </div>
@@ -92,20 +93,20 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                     </div>
 
                     <div className="mt-9 text-white">
-                        <h4 className="text-lg font-semibold">Descrição</h4>
-                        <p className="opacity-60 text-sm mt-2 leading-5">{product.description}</p>
+                        <h4 className="text-lg font-semibold sm:text-xl">Descrição</h4>
+                        <p className="opacity-60 text-sm mt-2 leading-6">{product.description}</p>
 
-                        <div className="flex flex-col gap-3 mt-10">
-                            <Button className="uppercase justify-center">
+                        <div className="flex flex-col gap-4 mt-10">
+                            <Button className="uppercase justify-center font-bold">
                                 Adicionar ao Carrinho
                             </Button>
 
-                            <Button className="text-white flex gap-2 justify-between items-center py-4 bg-[#171717] hover:bg-[#171717]">
+                            <Button className="text-white flex gap-2 justify-between items-center py-6 bg-[#171717] hover:bg-[#171717]">
                                 <div className="flex items-center gap-2">
                                     <Truck className="!h-5 !w-5" />
-                                    <div className="flex flex-col">
-                                        <p className="text-[10px]">Entrega via FSPacket</p>
-                                        <p className="text-[10px] text-primary">Entrega via FSPacket</p>
+                                    <div className="flex flex-col text-left">
+                                        <p className="text-xs">Entrega via FSPacket</p>
+                                        <p className="text-xs text-primary">Envio para <span className="font-bold">todo Brasil</span></p>
                                     </div>
                                 </div>
 
@@ -118,8 +119,9 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                 </div>
             </div>
 
-            <div>
-
+            <div className="mt-20 max-w-[1296px] mx-auto">
+                <h2 className="text-white text-xl font-bold uppercase">Produtos Relacionados</h2>
+                <ProductCarousel productList={relatedProducts} />
             </div>
         </section>
     )

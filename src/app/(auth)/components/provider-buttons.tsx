@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getProviders } from "next-auth/react";
-import { Button } from "./button";
+import { Button } from "../../../components/ui/button";
 import { signInAction } from "@/actions/authActions";
 
 const icons = [
