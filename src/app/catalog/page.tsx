@@ -13,13 +13,13 @@ const CatalogPage = async () => {
 
 
     return (
-        <section className="max-w-[1296px] mx-auto px-6">
+        <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 text-white w-max">
                 <LayoutGrid />
                 Catálogo
             </h2>
 
-            <div className="min-h-[70vh] mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {categories.map(categorie => (
                     <Link
                         key={categorie.id}

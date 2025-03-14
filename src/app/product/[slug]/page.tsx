@@ -62,7 +62,7 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                     </div>
                 </div>
 
-                <div className="max-w-[600px] md:mx-auto lg:flex-1 lg:flex lg:flex-col lg:justify-between">
+                <div className="max-w-[600px] md:mx-auto lg:flex-1 lg:flex lg:flex-col lg:justify-between lg:gap-5">
                     <div className="flex justify-between">
                         <div>
                             <h3 className="text-lg sm:text-xl font-medium text-white md:text-2xl">{product?.name}</h3>

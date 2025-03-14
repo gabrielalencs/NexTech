@@ -12,7 +12,7 @@ const ProductDealsPage = async () => {
     // if (!session) return redirect("/signin");
 
     return (
-        <section className="text-white max-w-[1296px] mx-auto px-6">
+        <section className="text-white max-w-[1296px] mx-auto px-6 min-h-[70vh]">
             <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
                 <Percent />
                 Ofertas
