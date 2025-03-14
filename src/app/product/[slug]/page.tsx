@@ -4,6 +4,7 @@ import { prisma } from "auth";
 import { ArrowDown, ChevronLeft, ChevronRight, HeartIcon, Truck } from "lucide-react";
 import CounterButton from "./components/counter-button";
 import ProductCarousel from "@/app/(home)/components/product-carousel";
+import { Separator } from "@/components/ui/separator";
 
 
 interface ProductDetailsPageProps {
@@ -37,7 +38,7 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
         <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <div className="flex flex-col gap-10 lg:flex-row">
                 <div className="flex flex-col gap-8 lg:flex-[1.3]">
-                    <div className="bg-[#171717] flex items-center justify-center py-10 rounded-md">
+                    <div className="bg-[#171717] flex items-center justify-center py-10 flex-1 rounded-md">
                         <img
                             src={product?.imageUrls[0]}
                             alt={`Image do produto: ${product?.name}`}
@@ -61,7 +62,7 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                     </div>
                 </div>
 
-                <div className="max-w-[600px] md:mx-auto lg:flex-1">
+                <div className="max-w-[600px] md:mx-auto lg:flex-1 lg:flex lg:flex-col lg:justify-between">
                     <div className="flex justify-between">
                         <div>
                             <h3 className="text-lg sm:text-xl font-medium text-white md:text-2xl">{product?.name}</h3>
@@ -92,7 +93,9 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                         </div>
                     </div>
 
-                    <div className="mt-9 text-white">
+                    <Separator className="hidden h-0.5 bg-[#171717] lg:block" />
+
+                    <div className="mt-9 text-white lg:mt-0">
                         <h4 className="text-lg font-semibold sm:text-xl">Descrição</h4>
                         <p className="opacity-60 text-sm mt-2 leading-6">{product.description}</p>
 
