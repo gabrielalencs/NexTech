@@ -62,31 +62,63 @@ const Header = async () => {
                         </SheetHeader>
 
                         <div className="mt-7 flex flex-col gap-4">
-                            <div className="flex flex-col gap-5">
-                                <Link
-                                    href="/signup"
-                                    className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
-                                    Cadastrar
-                                </Link>
+                            {(session && session.user)
+                                ? (
+                                    <div className="flex flex-col gap-5">
+                                        <NavigationMenu>
+                                            <NavigationMenuList>
+                                                <NavigationMenuItem className="bg-none">
+                                                    <NavigationMenuTrigger className="text-white p-5 border-[1px] border-zinc-700 bg-transparent focus:bg-none">
+                                                        Olá {session.user.name}
+                                                    </NavigationMenuTrigger>
 
-                                <Link
-                                    href="/signin"
-                                    className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
-                                    Entrar
-                                </Link>
-                            </div>
+                                                    <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
+                                                        <ul className="flex flex-col gap-2">
+                                                            <li>Meus favoritos</li>
+                                                            <li>Meus favoritos</li>
+                                                        </ul>
 
-                            {(session && session.user) && (
-                                navItems.map((buttonText, index) => (
-                                    <Button
-                                        key={index}
-                                        variant="outline"
-                                    >
-                                        <buttonText.icon />
-                                        {buttonText.text}
-                                    </Button>
-                                ))
-                            )}
+                                                        <form action={userLogout} className="mt-5">
+                                                            <Button
+                                                                type="submit"
+                                                                variant="destructive"
+                                                                className="px-5 text-md font-semibold"
+                                                            >
+                                                                <LogOut />
+                                                                Sair
+                                                            </Button>
+                                                        </form>
+                                                    </NavigationMenuContent>
+                                                </NavigationMenuItem>
+                                            </NavigationMenuList>
+                                        </NavigationMenu>
+                                    </div>
+                                )
+                                : (
+                                    <div className="flex flex-col gap-5">
+                                        <Link
+                                            href="/signup"
+                                            className="text-black text-md py-2 px-5 rounded-md bg-primary duration-300 text-md hover:bg-[#fee78a]">
+                                            Cadastrar
+                                        </Link>
+
+                                        <Link
+                                            href="/signin"
+                                            className="text-primary border-[1px] border-primary text-md py-2 px-5 rounded-md duration-200 hover:border-[#fee78a] hover:text-[#fee78a]">
+                                            Entrar
+                                        </Link>
+                                    </div>
+                                )}
+
+                            {navItems.map((buttonText, index) => (
+                                <Button
+                                    key={index}
+                                    variant="outline"
+                                >
+                                    <buttonText.icon />
+                                    {buttonText.text}
+                                </Button>
+                            ))}
                         </div>
                     </SheetContent>
                 </Sheet>
