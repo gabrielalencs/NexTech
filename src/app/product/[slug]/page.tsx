@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import FavoriteButton from "@/app/product/[slug]/components/favorite-button";
 import { prisma } from "auth";
-import { ArrowDown, ChevronLeft, ChevronRight, HeartIcon, Truck } from "lucide-react";
+import { ArrowDown, Truck } from "lucide-react";
 import CounterButton from "./components/counter-button";
 import ProductCarousel from "@/app/(home)/components/product-carousel";
 import { Separator } from "@/components/ui/separator";
+import ImageGallery from "./components/image-gallery";
 
 
 interface ProductDetailsPageProps {
@@ -38,28 +39,10 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
         <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <div className="flex flex-col gap-10 lg:flex-row">
                 <div className="flex flex-col gap-8 lg:flex-[1.3]">
-                    <div className="bg-[#171717] flex items-center justify-center py-10 flex-1 rounded-md">
-                        <img
-                            src={product?.imageUrls[0]}
-                            alt={`Image do produto: ${product?.name}`}
-                            className="w-9/12 max-w-[420px]"
-                        />
-                    </div>
-
-                    <div className="flex items-center gap-4 sm:gap-5">
-                        {product?.imageUrls.map((imageUrl, index) => (
-                            <div
-                                key={index}
-                                className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 sm:p-3"
-                            >
-                                <img
-                                    src={imageUrl}
-                                    alt={`Image do produto: ${product?.name}`}
-                                    className="w-full max-w-[100px]"
-                                />
-                            </div>
-                        ))}
-                    </div>
+                    <ImageGallery
+                        productGallery={product?.imageUrls}
+                        productName={product?.name}
+                    />
                 </div>
 
                 <div className="max-w-[600px] md:mx-auto lg:flex-1 lg:flex lg:flex-col lg:justify-between lg:gap-5">
@@ -100,7 +83,7 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
                         <p className="opacity-60 text-sm mt-2 leading-6">{product.description}</p>
 
                         <div className="flex flex-col gap-4 mt-10">
-                            <Button className="uppercase justify-center font-bold">
+                            <Button className="uppercase justify-center py-5 font-bold">
                                 Adicionar ao Carrinho
                             </Button>
 

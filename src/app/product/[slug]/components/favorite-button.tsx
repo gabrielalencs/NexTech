@@ -1,8 +1,6 @@
 
 
 const FavoriteButton = () => {
-  
-
     return (
         <label className="heartContainer">
             <input
