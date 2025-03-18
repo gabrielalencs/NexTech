@@ -38,11 +38,19 @@ const Header = async () => {
     ];
 
     return (
-        <header className="py-12 px-6 flex items-center justify-between lg:px-14 lg:py-14 2xl:px-24">
+        <header className={`py-12 px-6 flex items-center justify-between lg:px-14 lg:py-14 2xl:px-24`}>
             {/* Menu Mobile */}
 
-            <div className="lg:hidden">
-                <Sheet >
+            <div className={`${session && session.user ? "max-lg:order-2" : ""}`}>
+                <Link
+                    href="/"
+                    className="text-white text-xl font-bold md:text-2xl">
+                    <span className="text-primary">NextTech</span> Store
+                </Link>
+            </div>
+
+            <div className={`lg:hidden ${session && session.user ? "max-lg:order-3" : ""}`}>
+                <Sheet>
                     <SheetTrigger asChild >
                         <Button
                             variant="outline"
@@ -55,7 +63,7 @@ const Header = async () => {
 
                     <SheetContent
                         className="bg-[#0A0A0A] text-zinc-300 border-[1px] border-zinc-900 border-t-0 border-l-0 border-b-0"
-                        side="left"
+                        side="right"
                     >
                         <SheetHeader>
                             <SheetTitle className="text-white">Menu</SheetTitle>
@@ -124,47 +132,42 @@ const Header = async () => {
                 </Sheet>
             </div>
 
-            <div>
-                <Link
-                    href="/"
-                    className="text-white text-lg font-bold md:text-2xl">
-                    <span className="text-primary">NextTech</span> Store
-                </Link>
-            </div>
+            {(session && session.user) && (
+                <div className={`lg:hidden ${session && session.user ? "max-lg:order-1" : ""}`}>
+                    <Sheet>
+                        <SheetTrigger asChild >
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="justify-center"
+                            >
+                                <ShoppingCart className="!h-6 !w-6" />
+                            </Button>
+                        </SheetTrigger>
 
-            <div className="lg:hidden">
-                <Sheet>
-                    <SheetTrigger asChild >
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="justify-center"
+                        <SheetContent
+                            className="bg-[#0A0A0A] text-zinc-300 border-[1px] border-zinc-900 border-t-0 border-r-0 border-b-0 w-10/12"
+                            side="left"
                         >
-                            <ShoppingCart className="!h-6 !w-6" />
-                        </Button>
-                    </SheetTrigger>
+                            <SheetHeader>
+                                <SheetTitle className="text-left">
+                                    <Button
+                                        variant="outline"
+                                        className="py-5 border-2 border-primary rounded-full text-primary hover:bg-transparent hover:text-primary"
+                                    >
+                                        <ShoppingCart className="!h-5 !w-5" /> <span className="uppercase font-bold text-md">Carrinho</span>
+                                    </Button>
+                                </SheetTitle>
+                            </SheetHeader>
 
-                    <SheetContent
-                        className="bg-[#0A0A0A] text-zinc-300 border-[1px] border-zinc-900 border-t-0 border-r-0 border-b-0 w-10/12"
-                        side="right"
-                    >
-                        <SheetHeader>
-                            <SheetTitle className="text-left">
-                                <Button
-                                    variant="outline"
-                                    className="py-5 border-2 border-primary rounded-full text-primary hover:bg-transparent hover:text-primary"
-                                >
-                                    <ShoppingCart className="!h-5 !w-5" /> <span className="uppercase font-bold text-md">Carrinho</span>
-                                </Button>
-                            </SheetTitle>
-                        </SheetHeader>
+                            <div>
 
-                        <div>
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+            )}
 
-                        </div>
-                    </SheetContent>
-                </Sheet>
-            </div>
 
             {/* Menu Desktop */}
 
