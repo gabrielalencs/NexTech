@@ -14,7 +14,7 @@ const CounterButton = () => {
                 variant="outline"
                 onClick={() => setCounter(prev => Math.max(1, prev - 1))}
             >
-                <ChevronLeft className="!w-5 !h-5" />
+                <ChevronLeft className="h-4 w-4 sm:!w-5 sm:!h-5" />
             </Button>
 
             <span className="text-white">{counter}</span>
@@ -24,7 +24,7 @@ const CounterButton = () => {
                 variant="outline"
                 onClick={() => setCounter(prev => prev + 1)}
             >
-                <ChevronRight className="!w-5 !h-5" />
+                <ChevronRight className="h-4 w-4 sm:!w-5 sm:!h-5" />
             </Button>
         </div>
 

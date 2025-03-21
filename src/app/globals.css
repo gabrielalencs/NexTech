@@ -152,6 +152,14 @@ header {
     }
 }
 
+div::-webkit-scrollbar {
+    width: 8px;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: #171717;
+    border-radius: 20px;
+}
 
 
 @layer base {
