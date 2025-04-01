@@ -31,15 +31,16 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                 {productGallery.map((imageUrl, index) => (
                     <div
                         key={index}
-                        className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 cursor-pointer sm:p-3"
+                        className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3"
                         onClick={() => toggleCurrentImage(imageUrl)}
                     >
                         <Image
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
-                            className="w-full max-w-[100px]"
-                            width={100}
-                            height={100}
+                            className="h-auto max-h-[70%] w-auto max-w-[80%]"
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                         />
                     </div>
                 ))}

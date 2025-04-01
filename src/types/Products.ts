@@ -7,4 +7,5 @@ export interface Products {
     basePrice: number;
     discountPercentage: number;
     categoryId: string;
+    quantity?: number;
 }
