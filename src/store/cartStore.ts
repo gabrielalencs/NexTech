@@ -1,30 +1,37 @@
-import { create } from "zustand";
-import { Products } from "@/types/Products";
+import { Products } from '@/types/Products';
+import { create } from 'zustand';
 
-
-type CartStore = {
-    products: Products[];
-    addProduct: (product: Products, quantityValue: number) => void
+interface CartItem extends Products {
+    quantity: number;
 }
 
+interface CartState {
+    products: CartItem[];
+    addProduct: (product: Products, quantity: number) => void;
+    removeProduct: (productId: string) => void;
+    updateQuantity: (productId: string, newQuantity: number) => void;
+    getTotalItems: () => number;
+}
 
-export const useCartStore = create<CartStore>((set) => ({
+export const useCartStore = create<CartState>((set, get) => ({
     products: [],
-    addProduct: (product: Products, quantityValue: number) => set((state) => {
-        const existingProductIndex = state.products.findIndex((p) => p.id === product.id);
-
-        if (existingProductIndex !== -1) {
-            const updatedProducts = [...state.products];
-            updatedProducts[existingProductIndex] = {
-                ...updatedProducts[existingProductIndex],
-                quantity: (updatedProducts[existingProductIndex].quantity || 1) + quantityValue,
-            };
-
-            return { products: updatedProducts };
-        }
-
+    addProduct: (product, quantity) => set((state) => {
+        const existing = state.products.find(p => p.id === product.id);
         return {
-            products: [...state.products, { ...product, quantity: quantityValue }],
+            products: existing 
+                ? state.products.map(p => 
+                    p.id === product.id ? { ...p, quantity: p.quantity + quantity } : p
+                  )
+                : [...state.products, { ...product, quantity }]
         };
     }),
+    removeProduct: (productId) => set({ 
+        products: get().products.filter(p => p.id !== productId) 
+    }),
+    updateQuantity: (productId, newQuantity) => set({
+        products: get().products.map(p => 
+            p.id === productId ? { ...p, quantity: newQuantity } : p
+        )
+    }),
+    getTotalItems: () => get().products.reduce((total, p) => total + p.quantity, 0)
 }));

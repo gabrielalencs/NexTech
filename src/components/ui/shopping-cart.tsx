@@ -1,3 +1,5 @@
+"use client"
+
 import {
     Sheet,
     SheetContent,
@@ -9,6 +11,9 @@ import { Button } from "../ui/button";
 
 import { ShoppingCartIcon, Trash } from "lucide-react";
 import CounterButton from "./counter-button";
+import { useCartStore } from "@/store/cartStore";
+import Image from "next/image";
+import { useCounterStore } from "@/store/counterProductStore";
 
 interface ShoppingCartProps {
     isButtonMovel: boolean
@@ -17,6 +22,10 @@ interface ShoppingCartProps {
 
 const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
     const side = isButtonMovel ? "left" : "right";
+
+    const { products, removeProduct, updateQuantity, getTotalItems } = useCartStore();
+
+    const totalItems = getTotalItems();
 
     return (
         <div>
@@ -33,7 +42,7 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
                     ) : (
                         <Button className="rounded-full">
                             <ShoppingCartIcon className="!h-6 !w-6" />
-                            <span>Cart(0)</span>
+                            <span>Cart({totalItems})</span>
                         </Button>
                     )}
                 </SheetTrigger>
@@ -56,41 +65,49 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
 
                     <div className="mt-10 flex flex-col justify-between h-full">
                         <div className="flex flex-col gap-7 flex-1 overflow-y-scroll pb-7">
-                            <div className="flex justify-between gap-5">
-                                <div className="flex gap-5">
-                                    <div className="bg-[#171717] flex items-center justify-center p-2 rounded-md h-24 w-24">
-                                        <img
-                                            src="https://fsw-store-beta.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdxzickkey%2Fimage%2Fupload%2Fv1706243484%2Ffsw-store%2F01_logi-mx-keys-s_ryutop.webp&w=1920&q=75"
-                                            alt=""
-                                            className="w-full"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <div className="text-white">
-                                            <p className="truncate text-sm max-w-[120px] max-w">Logitech MX Keyssdsdfssdfsdf</p>
-                                            <div className="flex items-center gap-2">
-                                                <span className="truncate font-semibold lg:text-lg">
-                                                    R$ 500
-                                                </span>
-
-                                                <span className="truncate text-xs line-through opacity-75 lg:text-sm">
-                                                    R$ 400
-                                                </span>
-                                            </div>
+                            {products.map(product => (
+                                <div className="flex justify-between gap-5" key={product.id}>
+                                    <div className="flex gap-5">
+                                        <div className="bg-[#171717] flex items-center justify-center p-2 rounded-md h-24 w-24">
+                                            <Image
+                                                src={product.imageUrls[0]}
+                                                alt={`Image do produto: ${product.name}`}
+                                                className="w-full"
+                                                width={100}
+                                                height={100}
+                                            />
                                         </div>
 
-                                        <CounterButton />
-                                    </div>
-                                </div>
+                                        <div>
+                                            <div className="text-white">
+                                                <p className="truncate text-sm max-w-[120px]">{product.name}</p>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="truncate font-semibold lg:text-lg">
+                                                        R$ {(product.basePrice - (product.basePrice * product.discountPercentage / 100)).toFixed(2)}
+                                                    </span>
+                                                    <span className="truncate text-xs line-through opacity-75 lg:text-sm">
+                                                        De: R$ {(product.basePrice).toFixed(2)}
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                <Button
-                                    className="px-2 mr-3"
-                                    variant="outline"
-                                >
-                                    <Trash />
-                                </Button>
-                            </div>
+                                            <CounterButton
+                                                counter={product.quantity}
+                                                increment={() => updateQuantity(product.id, product.quantity + 1)}
+                                                decrement={() => updateQuantity(product.id, Math.max(1, product.quantity - 1))}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <Button
+                                        className="px-2 mr-3"
+                                        variant="outline"
+                                        onClick={() => removeProduct(product.id)}
+                                    >
+                                        <Trash />
+                                    </Button>
+                                </div>
+                            ))}
                         </div>
 
                         <div className="pb-20 flex-1 border-[1px] border-zinc-900 border-r-0 border-l-0 border-b-0 text-white text-xs sm:text-sm sm:pb-24">

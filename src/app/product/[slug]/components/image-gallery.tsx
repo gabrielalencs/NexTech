@@ -17,13 +17,15 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
 
     return (
         <>
-            <div className="bg-[#171717] flex items-center justify-center py-10 flex-1 rounded-md">
+            <div className="bg-[#171717] flex items-center justify-center max-h-[500px] py-10 flex-1 rounded-md">
                 <Image
                     src={currentImage}
                     alt={`Image do produto: ${productName}`}
-                    className="w-9/12 max-w-[420px]"
-                    width={420}
-                    height={420}
+                    className="h-auto w-auto max-w-[70%] object-contain"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    loading="lazy"
                 />
             </div>
 

@@ -138,7 +138,6 @@ const Header = async () => {
             {(session && session.user) && (
                 <div className={`lg:hidden ${session && session.user ? "max-lg:order-1" : ""}`}>
                     <HeaderShoppingCart isButtonMovel={true} />
-
                 </div>
             )}
 

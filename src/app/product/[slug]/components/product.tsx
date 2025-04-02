@@ -17,15 +17,18 @@ interface ProductProps {
 
 const ProductContainer = ({ productInfo }: ProductProps) => {
 
-    const { addProduct, products } = useCartStore();
-    const { counter } = useCounterStore();
+    const { addProduct } = useCartStore();
+    const { 
+        productCounter, productIncrement, 
+        productDecrement, productResetCounter 
+    } = useCounterStore();
 
     const addProductList = () => {
-        addProduct(productInfo, counter);
+        addProduct(productInfo, productCounter);
+        productResetCounter();
     };
 
-    console.log(products);
-    
+
     return (
         <div className="flex flex-col gap-10 lg:flex-row">
             <div className="flex flex-col gap-8 lg:flex-[1.3]">
@@ -58,7 +61,11 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
                             )}
                         </div>
 
-                        <CounterButton />
+                        <CounterButton 
+                            counter={productCounter}
+                            increment={productIncrement}
+                            decrement={productDecrement}
+                        />
                     </div>
 
                     <div>
