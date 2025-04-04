@@ -4,6 +4,8 @@ import "./globals.css";
 
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
+import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +26,12 @@ export default function RootLayout({
                 cz-shortcut-listen="true"
             >
                 <Header />
-                {children}
+
+                <SessionProvider>
+                    {children}
+                    <Toaster />
+                </SessionProvider>
+
                 <Footer />
             </body>
         </html>

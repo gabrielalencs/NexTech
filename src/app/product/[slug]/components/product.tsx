@@ -10,6 +10,8 @@ import { ArrowDown, Truck } from "lucide-react"
 import { Products } from "@/types/Products"
 import { useCartStore } from "@/store/cartStore"
 import { useCounterStore } from "@/store/counterProductStore"
+import { useToast } from "@/hooks/use-toast"
+import { useSession } from "next-auth/react"
 
 interface ProductProps {
     productInfo: Products
@@ -17,6 +19,8 @@ interface ProductProps {
 
 const ProductContainer = ({ productInfo }: ProductProps) => {
 
+    const { data: session, status } = useSession();
+    const { toast } = useToast();
     const { addProduct } = useCartStore();
     const { 
         productCounter, productIncrement, 
@@ -24,9 +28,29 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
     } = useCounterStore();
 
     const addProductList = () => {
+        if (status === "unauthenticated") {
+            toast({
+                title: "Você precisa estar logado",
+                description: "Faça login para adicionar itens ao carrinho",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        toast({
+            title: "Item adicionado ao carrinho",
+        });
+
         addProduct(productInfo, productCounter);
         productResetCounter();
+
     };
+
+
+    const handleFavoriteClick = () => {
+        
+    };
+
 
 
     return (
