@@ -85,7 +85,11 @@ const Header = async () => {
 
                                                     <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                                         <ul className="flex flex-col gap-2">
-                                                            <li>Meus favoritos</li>
+                                                            <li>
+                                                                <Link href="/wishlist">
+                                                                    Meus favoritos
+                                                                </Link>
+                                                            </li>
                                                             <li>Meus favoritos</li>
                                                         </ul>
 
@@ -170,7 +174,9 @@ const Header = async () => {
 
                                         <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                             <ul className="flex flex-col gap-2">
-                                                <li>Meus favoritos</li>
+                                                <Link href="/wishlist">
+                                                    Meus favoritos
+                                                </Link>
                                                 <li>Meus favoritos</li>
                                             </ul>
 

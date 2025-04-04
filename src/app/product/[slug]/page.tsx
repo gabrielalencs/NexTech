@@ -1,12 +1,5 @@
-import { Button } from "@/components/ui/button";
-import FavoriteButton from "@/app/product/[slug]/components/favorite-button";
 import { prisma } from "auth";
-import { ArrowDown, Truck } from "lucide-react";
-import CounterButton from "../../../components/ui/counter-button";
 import ProductCarousel from "@/app/(home)/components/product-carousel";
-import { Separator } from "@/components/ui/separator";
-import ImageGallery from "./components/image-gallery";
-import { useCartStore } from "@/store/cartStore";
 import ProductContainer from "./components/product";
 
 
