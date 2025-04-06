@@ -21,7 +21,7 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                 <Image
                     src={currentImage}
                     alt={`Image do produto: ${productName}`}
-                    className="h-auto w-auto max-w-[70%] object-contain"
+                    className="h-auto w-auto max-w-[60%] object-contain"
                     width={0}
                     height={0}
                     sizes="100vw"
@@ -34,14 +34,14 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                     <div
                         key={index}
                         className={`
-                            bg-[#171717] flex items-center border-2 justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3 ${currentImage == imageUrl ? "border-primary" : "border-none"}
+                            bg-[#171717] flex items-center border-2 justify-center p-2 rounded-md flex-1 cursor-pointer w-[130px] h-[80px] sm:w-[150px] sm:h-[120px] sm:p-3 ${currentImage == imageUrl ? "border-primary" : "border-none"}
                         `}
                         onClick={() => toggleCurrentImage(imageUrl)}
                     >
                         <Image
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
-                            className={"h-auto max-h-[90%] w-auto max-w-[90%]"}
+                            className={"h-auto max-h-[100%] w-auto max-w-[100%]"}
                             width={0}
                             height={0}
                             sizes="100vw"

@@ -11,7 +11,6 @@ interface FavoriteButtonProps {
 }
 
 const FavoriteButton = ({ product }: FavoriteButtonProps) => {
-    
     const [isFav, setIsFav] = useState(false);
     const { toast } = useToast();
     const { status } = useSession();
