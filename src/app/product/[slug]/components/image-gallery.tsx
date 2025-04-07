@@ -29,19 +29,17 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                 />
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-5">
+            <div className="flex items-center gap-4 sm:gap-5 md:gap-6">
                 {productGallery.map((imageUrl, index) => (
                     <div
                         key={index}
-                        className={`
-                            bg-[#171717] flex items-center border-2 justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3 ${currentImage == imageUrl ? "border-primary" : "border-none"}
-                        `}
+                        className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3"
                         onClick={() => toggleCurrentImage(imageUrl)}
                     >
                         <Image
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
-                            className={"h-auto max-h-[90%] w-auto max-w-[90%]"}
+                            className="h-auto max-h-[70%] w-auto max-w-[80%]"
                             width={0}
                             height={0}
                             sizes="100vw"

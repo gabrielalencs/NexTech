@@ -18,7 +18,8 @@ interface ProductProps {
 }
 
 const ProductContainer = ({ productInfo }: ProductProps) => {
-    const { status } = useSession();
+
+    const { data: session, status } = useSession();
     const { toast } = useToast();
     const { addProduct } = useCartStore();
     const { 
@@ -38,12 +39,16 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
 
         toast({
             title: "Item adicionado ao carrinho",
-            variant: "outline"
         });
 
         addProduct(productInfo, productCounter);
         productResetCounter();
 
+    };
+
+
+    const handleFavoriteClick = () => {
+        
     };
 
 
@@ -88,7 +93,7 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
                     </div>
 
                     <div>
-                        <FavoriteButton product={productInfo} />
+                        <FavoriteButton />
                     </div>
                 </div>
 

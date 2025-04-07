@@ -1,27 +1,13 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { useFavoritesStore } from "@/store/favoritesStore";
-import { Products } from "@/types/Products";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-interface FavoriteButtonProps {
-    product: Products
-}
-
-const FavoriteButton = ({ product }: FavoriteButtonProps) => {
-    
-    const [isFav, setIsFav] = useState(false);
+const FavoriteButton = () => {
     const { toast } = useToast();
-    const { status } = useSession();
-    const { addFavorite, removeFavorite, products, isFavorite } = useFavoritesStore();
-
- 
-    useEffect(() => {
-        setIsFav(isFavorite(product.id));
-    }, [product.id, isFavorite]);
-
+    const [inputChecked, setInputChecked] = useState(false);
+    const { data: session, status } = useSession();
 
     const handleFavoriteClick = () => {
         if (status === "unauthenticated") {
@@ -34,27 +20,16 @@ const FavoriteButton = ({ product }: FavoriteButtonProps) => {
         }
 
         toast({
-            title: `${isFav ? "Item removido dos Favoritos" : "Item adicionado aos Favoritos"}`,
-            variant: "outline"
+            title: `${inputChecked ? "Item removido dos Favoritos" : "Item adicionado aos Favoritos"}`,
         });
-
-        if (isFav) {
-            removeFavorite(product.id);
-        } else {
-            addFavorite(product);
-        }
     };
-
-    console.log(products);
-
-
 
     return (
         <label className="heartContainer" onClick={handleFavoriteClick}>
             <input
                 type="checkbox"
-                checked={isFav}
-                onChange={() => setIsFav(!isFav)}
+                checked={inputChecked}
+                onChange={() => setInputChecked(!inputChecked)}
                 disabled={status === "unauthenticated"}
             />
             <div className="checkmark">

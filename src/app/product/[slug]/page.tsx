@@ -1,7 +1,20 @@
+<<<<<<< HEAD
 import { notFound } from "next/navigation";
 import { prisma } from "auth"; // verifique se esse caminho está correto
 import ProductItem from "@/components/ui/product-item";
 import { Headphones, Keyboard, Monitor, Mouse, Speaker, Touchpad } from "lucide-react";
+=======
+import { Button } from "@/components/ui/button";
+import FavoriteButton from "@/app/product/[slug]/components/favorite-button";
+import { prisma } from "auth";
+import { ArrowDown, Truck } from "lucide-react";
+import CounterButton from "../../../components/ui/counter-button";
+import ProductCarousel from "@/app/(home)/components/product-carousel";
+import { Separator } from "@/components/ui/separator";
+import ImageGallery from "./components/image-gallery";
+import { useCartStore } from "@/store/cartStore";
+import ProductContainer from "./components/product";
+>>>>>>> parent of 8c38865 (feat: makes logic to add and remove item from favorites)
 
 const categoryIcons = {
     mouses: Mouse,

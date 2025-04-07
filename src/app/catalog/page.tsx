@@ -6,6 +6,9 @@ import Link from "next/link";
 
 const CatalogPage = async () => {
     const categories = await prisma.category.findMany();
+    // const session = await auth();
+
+    // if (!session) return redirect("/signin");
 
 
     return (
