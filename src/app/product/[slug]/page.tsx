@@ -39,7 +39,6 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
     if (!product) return <h1 className="text-white text-center mt-10 text-2xl">Erro ao mostrar detalhes do produto</h1>
 
 
-
     return (
         <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <ProductContainer productInfo={product} />
@@ -52,4 +51,4 @@ const ProductPage = async ({ params }: ProductDetailsPageProps) => {
     );
 }
 
-export default ProductPage
+export default ProductPage;

@@ -12,14 +12,15 @@ const categoryIcons = {
     touchpads: Touchpad,
 } as const;
 
-interface ProductDetailsPageProps {
+
+interface CategoryProductsPageProps {
     params: {
         slug: string;
     };
 }
 
 
-const CategoryProductsPage = async ({ params }: ProductDetailsPageProps) => {
+const CategoryProductsPage = async ({ params}: CategoryProductsPageProps) => {
 
     const { slug } = await params;
 

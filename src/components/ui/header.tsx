@@ -79,18 +79,22 @@ const Header = async () => {
                                         <NavigationMenu>
                                             <NavigationMenuList>
                                                 <NavigationMenuItem className="bg-none">
-                                                    <NavigationMenuTrigger className="text-white p-5 border-[1px] border-zinc-700 bg-transparent focus:bg-none">
-                                                        Olá {session.user.name}
+                                                    <NavigationMenuTrigger className="text-white p-5 bg-transparent focus:bg-none">
+                                                        <span className="opacity-75 mr-1">Olá</span> {session.user.name}
                                                     </NavigationMenuTrigger>
 
                                                     <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                                         <ul className="flex flex-col gap-2">
                                                             <li>
-                                                                <Link href="/wishlist">
-                                                                    Meus favoritos
+                                                                <Link href="/orders">
+                                                                    Meus Pedidos
                                                                 </Link>
                                                             </li>
-                                                            <li>Meus favoritos</li>
+                                                            <li>
+                                                                <Link href="/wishlist">
+                                                                    Meus Favoritos
+                                                                </Link>
+                                                            </li>
                                                         </ul>
 
                                                         <form action={userLogout} className="mt-5">
@@ -168,15 +172,22 @@ const Header = async () => {
                             <NavigationMenu>
                                 <NavigationMenuList>
                                     <NavigationMenuItem className="bg-none">
-                                        <NavigationMenuTrigger className="text-white p-5 border-[1px] border-zinc-700 bg-transparent focus:bg-none">
-                                            Olá {session.user.name}
+                                        <NavigationMenuTrigger className="text-white p-5 bg-transparent focus:bg-none">
+                                            <span className="opacity-75 mr-1">Olá</span> {session.user.name}
                                         </NavigationMenuTrigger>
 
                                         <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                             <ul className="flex flex-col gap-2">
-                                                <Link href="/wishlist">
-                                                    Meus favoritos
-                                                </Link>
+                                                <li>
+                                                    <Link href="/orders">
+                                                        Meus Pedidos
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/wishlist">
+                                                        Meus Favoritos
+                                                    </Link>
+                                                </li>
                                             </ul>
 
                                             <form action={userLogout} className="mt-5">
