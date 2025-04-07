@@ -11,7 +11,6 @@ interface CartState {
     removeProduct: (productId: string) => void;
     updateQuantity: (productId: string, newQuantity: number) => void;
     getTotalItems: () => number;
-    getTotalPrice: () => number
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -34,13 +33,5 @@ export const useCartStore = create<CartState>((set, get) => ({
             p.id === productId ? { ...p, quantity: newQuantity } : p
         )
     }),
-    getTotalItems: () => get().products.reduce((total, p) => total + p.quantity, 0),
-    getTotalPrice: () => {
-        const total = get().products.reduce((sum, p) => {
-            const discount = p.discountPercentage ?? 0;
-            const price = p.basePrice - (p.basePrice * discount / 100);
-            return sum + price * p.quantity;
-        }, 0);
-        return total;
-    }
+    getTotalItems: () => get().products.reduce((total, p) => total + p.quantity, 0)
 }));

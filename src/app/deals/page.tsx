@@ -12,7 +12,7 @@ const ProductDealsPage = async () => {
                 Ofertas
             </h2>
 
-            <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            <div className="mt-10 grid gap-x-6 gap-y-14 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                 {discountedProducts.map(product => (
                     <ProductItem productInformation={product} key={product.id} />
                 ))}

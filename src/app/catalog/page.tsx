@@ -15,7 +15,7 @@ const CatalogPage = async () => {
                 Catálogo
             </h2>
 
-            <div className="mt-14 grid gap-9 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {categories.map(categorie => (
                     <Link
                         key={categorie.id}
