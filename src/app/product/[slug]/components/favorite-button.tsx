@@ -4,7 +4,17 @@ import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+<<<<<<< HEAD
 const FavoriteButton = () => {
+=======
+interface FavoriteButtonProps {
+    product: Products
+}
+
+const FavoriteButton = ({ product }: FavoriteButtonProps) => {
+    
+    const [isFav, setIsFav] = useState(false);
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
     const { toast } = useToast();
     const [inputChecked, setInputChecked] = useState(false);
     const { data: session, status } = useSession();

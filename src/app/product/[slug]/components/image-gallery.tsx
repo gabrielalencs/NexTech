@@ -33,13 +33,23 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                 {productGallery.map((imageUrl, index) => (
                     <div
                         key={index}
+<<<<<<< HEAD
                         className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3"
+=======
+                        className={`
+                            bg-[#171717] flex items-center border-2 justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3 ${currentImage == imageUrl ? "border-primary" : "border-none"}
+                        `}
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
                         onClick={() => toggleCurrentImage(imageUrl)}
                     >
                         <Image
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
+<<<<<<< HEAD
                             className="h-auto max-h-[70%] w-auto max-w-[80%]"
+=======
+                            className={"h-auto max-h-[90%] w-auto max-w-[90%]"}
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
                             width={0}
                             height={0}
                             sizes="100vw"

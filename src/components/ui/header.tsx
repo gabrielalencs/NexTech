@@ -85,7 +85,15 @@ const Header = async () => {
 
                                                     <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                                         <ul className="flex flex-col gap-2">
+<<<<<<< HEAD
                                                             <li>Meus favoritos</li>
+=======
+                                                            <li>
+                                                                <Link href="/wishlist">
+                                                                    Meus favoritos
+                                                                </Link>
+                                                            </li>
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
                                                             <li>Meus favoritos</li>
                                                         </ul>
 
@@ -170,7 +178,13 @@ const Header = async () => {
 
                                         <NavigationMenuContent className="bg-[#0A0A0A] text-white p-5 w-[187px] md:w-[187px]">
                                             <ul className="flex flex-col gap-2">
+<<<<<<< HEAD
                                                 <li>Meus favoritos</li>
+=======
+                                                <Link href="/wishlist">
+                                                    Meus favoritos
+                                                </Link>
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
                                                 <li>Meus favoritos</li>
                                             </ul>
 
