@@ -16,7 +16,10 @@ const WishlistPage = () => {
 
     const { products } = useFavoritesStore();
 
+<<<<<<< HEAD
 >>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes):src/app/wishlist/page.tsx
+=======
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
 
     return (
         <section className="text-white max-w-[1296px] mx-auto px-6 min-h-[70vh]">
@@ -24,6 +27,7 @@ const WishlistPage = () => {
                 {products.map(productInfo => (
                     <ProductItem productInformation={productInfo} key={productInfo.id} />
                 ))}
+<<<<<<< HEAD
 <<<<<<< HEAD:src/app/(dashboard)/wishlist/page.tsx
                 {products.length != 0 ? (
                     products.map(productInfo => (
@@ -36,6 +40,8 @@ const WishlistPage = () => {
                 )}
 =======
 >>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes):src/app/wishlist/page.tsx
+=======
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
             </div>
         </section>
     )

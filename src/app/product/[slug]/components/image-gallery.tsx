@@ -46,7 +46,11 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
 <<<<<<< HEAD
+<<<<<<< HEAD
                             className="h-auto max-h-[70%] w-auto max-w-[80%]"
+=======
+                            className={"h-auto max-h-[90%] w-auto max-w-[90%]"}
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
 =======
                             className={"h-auto max-h-[90%] w-auto max-w-[90%]"}
 >>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
