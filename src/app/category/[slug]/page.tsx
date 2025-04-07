@@ -12,17 +12,22 @@ const categoryIcons = {
     touchpads: Touchpad,
 } as const;
 
+type SegmentParams<T extends Object = any> = T extends Record<string, any>
+    ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
+    : T
 
-interface CategoryProductsPageProps {
-    params: {
-        slug: string;
-    };
+export interface PageProps {
+    params?: SegmentParams;
+    searchParams?: any;
 }
 
 
-const CategoryProductsPage = async ({ params}: CategoryProductsPageProps) => {
+const CategoryProductsPage = async ({ params }: PageProps) => {
 
-    const { slug } = await params;
+    const { slug } = params;
+
+
+
 
     const category = await prisma.category.findFirst({
         where: { slug },

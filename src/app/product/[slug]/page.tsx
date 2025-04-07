@@ -12,13 +12,17 @@ import ProductContainer from "./components/product";
 
 
 
-interface ProductDetailsPageProps {
-    params: {
-        slug: string;
-    };
+type SegmentParams<T extends Object = any> = T extends Record<string, any>
+    ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
+    : T
+
+export interface PageProps {
+    params?: SegmentParams;
+    searchParams?: any;
 }
 
-const ProductPage = async ({ params }: ProductDetailsPageProps) => {
+
+const ProductPage = async ({ params }: PageProps) => {
 
     const { slug } = await params;
 
