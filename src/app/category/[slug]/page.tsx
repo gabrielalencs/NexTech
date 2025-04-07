@@ -1,12 +1,10 @@
 import ProductItem from "@/components/ui/product-item";
-import { auth, prisma } from "auth";
+import { prisma } from "auth";
 
 import {
     Headphones, Keyboard, Monitor,
     Mouse, Speaker, Touchpad
 } from "lucide-react";
-import { redirect } from "next/navigation";
-
 
 const categoryIcons: { [key: string]: React.ComponentType<any> } = {
     mouses: Mouse,
@@ -17,18 +15,10 @@ const categoryIcons: { [key: string]: React.ComponentType<any> } = {
     touchpads: Touchpad,
 };
 
-interface ProductDetailsPageProps {
-    params: {
-        slug: string;
-    };
-}
 
-const CategoryProducts = async ({ params }: ProductDetailsPageProps) => {
-    // const session = await auth();
 
-    // if (!session) return redirect("/signin");
-
-    const { slug } = await params;
+const CategoryProducts = async ({ params }: any) => {
+    const { slug } = params;
 
     const category = await prisma.category.findFirst({
         where: {
@@ -56,7 +46,7 @@ const CategoryProducts = async ({ params }: ProductDetailsPageProps) => {
                 ))}
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default CategoryProducts 
+export default CategoryProducts;
