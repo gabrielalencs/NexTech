@@ -1,45 +1,48 @@
-import { prisma } from "auth";
-import ProductCarousel from "@/app/(home)/components/product-carousel";
-import ProductContainer from "./components/product";
+import { notFound } from "next/navigation";
+import { prisma } from "auth"; // verifique se esse caminho está correto
+import ProductItem from "@/components/ui/product-item";
+import { Headphones, Keyboard, Monitor, Mouse, Speaker, Touchpad } from "lucide-react";
 
+const categoryIcons = {
+    mouses: Mouse,
+    keyboards: Keyboard,
+    monitors: Monitor,
+    headphones: Headphones,
+    speakers: Speaker,
+    touchpads: Touchpad,
+} as const;
 
-interface ProductDetailsPageProps {
-    params: {
-        slug: string;
-    };
-}
+export default async function CategoryProductsPage({
+    params,
+}: {
+    params: { slug: string };
+}) {
+    const { slug } = params;
 
-const ProductPage = async ({ params }: ProductDetailsPageProps) => {
-
-    const { slug } = await params;
-
-    const product = await prisma.product.findFirst({
+    const category = await prisma.category.findFirst({
         where: { slug },
-        include: {
-            category: true,
-        },
+        include: { products: true },
     });
 
-    if (!product) return <h1 className="text-white text-center mt-10 text-2xl">Erro ao mostrar detalhes do produto</h1>
+    if (!category) {
+        notFound();
+    }
 
-    const relatedProducts = await prisma.product.findMany({
-        where: {
-            categoryId: product?.categoryId,
-            slug: { not: slug },
-        },
-    });
+    const Icon = categoryIcons[category.slug as keyof typeof categoryIcons];
 
- 
     return (
-        <section className="max-w-[1296px] min-h-[70vh] mx-auto px-6">
-            <ProductContainer productInfo={product} />
-
-            <div className="mt-20 max-w-[1296px] mx-auto">
-                <h2 className="text-white text-xl font-bold uppercase">Produtos Relacionados</h2>
-                <ProductCarousel productList={relatedProducts} />
+        <section className="text-white max-w-[1296px] min-h-[70vh] mx-auto px-6">
+            <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
+                {Icon && <Icon />}
+                {category.name}
+            </h2>
+            <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                {category.products.map((product) => (
+                    <div key={product.id}>
+                        <ProductItem productInformation={product} />
+                    </div>
+                ))}
             </div>
         </section>
-    )
+    );
 }
-
-export default ProductPage
