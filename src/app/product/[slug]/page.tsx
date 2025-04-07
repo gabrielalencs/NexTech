@@ -12,23 +12,22 @@ const categoryIcons = {
     touchpads: Touchpad,
 } as const;
 
-export default async function CategoryProductsPage({
-    params,
-}: {
-    params: { slug: string };
-}) {
-    const { slug } = params;
+interface ProductDetailsPageProps {
+    params: {
+        slug: string;
+    };
+}
+
+const ProductPage = async ({ params }: ProductDetailsPageProps) =>  {
+
+    const { slug } = await params;
 
     const category = await prisma.category.findFirst({
         where: { slug },
         include: { products: true },
     });
 
-    if (!category) {
-        notFound();
-    }
 
-    const Icon = categoryIcons[category.slug as keyof typeof categoryIcons];
 
     return (
         <section className="text-white max-w-[1296px] min-h-[70vh] mx-auto px-6">
@@ -46,3 +45,5 @@ export default async function CategoryProductsPage({
         </section>
     );
 }
+
+export default ProductPage

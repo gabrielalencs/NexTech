@@ -12,8 +12,14 @@ const categoryIcons = {
     touchpads: Touchpad,
 } as const;
 
+interface ProductDetailsPageProps {
+    params: {
+        slug: string;
+    };
+}
 
-export default async function CategoryProductsPage({ params }: { params: Promise<{ slug: string }> }) {
+
+const CategoryProductsPage = async ({ params }: ProductDetailsPageProps) => {
     const { slug } = await params;
 
     const category = await prisma.category.findFirst({
@@ -43,3 +49,6 @@ export default async function CategoryProductsPage({ params }: { params: Promise
         </section>
     );
 }
+
+
+export default CategoryProductsPage;
