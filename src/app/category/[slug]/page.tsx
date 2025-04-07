@@ -41,9 +41,12 @@ const CategoryProductsPage = async ({ params }: ProductDetailsPageProps) => {
             </h2>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                 {category.products.map((product) => (
 =======
+=======
+>>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
 =======
 >>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
 
