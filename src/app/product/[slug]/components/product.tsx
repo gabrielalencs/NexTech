@@ -22,9 +22,9 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
     const { data: session, status } = useSession();
     const { toast } = useToast();
     const { addProduct } = useCartStore();
-    const { 
-        productCounter, productIncrement, 
-        productDecrement, productResetCounter 
+    const {
+        productCounter, productIncrement,
+        productDecrement, productResetCounter
     } = useCounterStore();
 
     const addProductList = () => {
@@ -39,18 +39,13 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
 
         toast({
             title: "Item adicionado ao carrinho",
+            variant: "outline"
         });
 
         addProduct(productInfo, productCounter);
         productResetCounter();
 
     };
-
-
-    const handleFavoriteClick = () => {
-        
-    };
-
 
 
     return (
@@ -85,7 +80,7 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
                             )}
                         </div>
 
-                        <CounterButton 
+                        <CounterButton
                             counter={productCounter}
                             increment={productIncrement}
                             decrement={productDecrement}
@@ -93,7 +88,8 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
                     </div>
 
                     <div>
-                        <FavoriteButton />
+                        <FavoriteButton product={productInfo} />
+
                     </div>
                 </div>
 
