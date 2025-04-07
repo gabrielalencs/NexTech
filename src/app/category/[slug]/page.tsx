@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+
 import { prisma } from "auth";
 import ProductItem from "@/components/ui/product-item";
 import { Headphones, Keyboard, Monitor, Mouse, Speaker, Touchpad } from "lucide-react";
@@ -20,6 +20,7 @@ interface ProductDetailsPageProps {
 
 
 const CategoryProductsPage = async ({ params }: ProductDetailsPageProps) => {
+
     const { slug } = await params;
 
     const category = await prisma.category.findFirst({
@@ -27,32 +28,17 @@ const CategoryProductsPage = async ({ params }: ProductDetailsPageProps) => {
         include: { products: true },
     });
 
-    if (!category) {
-        notFound();
-    }
+    const Icon = categoryIcons[category?.slug as keyof typeof categoryIcons];
 
-    const Icon = categoryIcons[category.slug as keyof typeof categoryIcons];
 
     return (
         <section className="text-white max-w-[1296px] min-h-[70vh] mx-auto px-6">
             <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
                 {Icon && <Icon />}
-                {category.name}
+                {category?.name}
             </h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-                {category.products.map((product) => (
-=======
-=======
->>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
-=======
->>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
-
-            <div className="mt-10 grid gap-x-6 gap-y-14 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                 {category?.products.map((product) => (
->>>>>>> parent of 8a05ab4 (feat: makes logic of adding products in the cart and creates a group of private routes)
                     <div key={product.id}>
                         <ProductItem productInformation={product} />
                     </div>
