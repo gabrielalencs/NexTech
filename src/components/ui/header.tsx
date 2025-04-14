@@ -48,7 +48,7 @@ const Header = async () => {
                 <Link
                     href="/"
                     className="text-white text-xl font-bold md:text-2xl">
-                    <span className="text-primary">NextTech</span> Store
+                    <span className="text-primary">NexTech</span> Store
                 </Link>
             </div>
 

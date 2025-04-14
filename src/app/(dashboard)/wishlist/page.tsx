@@ -7,11 +7,9 @@ import { Heart } from "lucide-react"
 const WishlistPage = () => {
     const { products } = useFavoritesStore();
 
-
-
     return (
         <section className="text-white max-w-[1296px] mx-auto px-6 min-h-[70vh]">
-            <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
+            <h2 className="border-2 border-primary px-4 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
                 <Heart />
                 Favoritos
             </h2>
@@ -22,9 +20,7 @@ const WishlistPage = () => {
                         <ProductItem productInformation={productInfo} key={productInfo.id} />
                     ))
                 ) : (
-                    <h1 className="text-white text-xl absolute">
-                        Nenhum produto favoritado
-                    </h1>
+                    <h1 className="text-white text-2xl font-semibold absolute mt-10">Nenhum produto favoritado</h1>
                 )}
             </div>
         </section>

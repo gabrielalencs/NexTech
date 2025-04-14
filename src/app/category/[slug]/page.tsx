@@ -39,7 +39,7 @@ const CategoryProductsPage = async ({ params }: PageProps) => {
 
     return (
         <section className="text-white max-w-[1296px] min-h-[70vh] mx-auto px-6">
-            <h2 className="border-2 border-primary px-5 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
+            <h2 className="border-2 border-primary px-4 py-2 rounded-full uppercase text-md flex items-center gap-2 w-max">
                 {Icon && <Icon />}
                 {category?.name}
             </h2>
