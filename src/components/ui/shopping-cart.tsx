@@ -1,5 +1,9 @@
 "use client"
 
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
 import {
     Sheet,
     SheetContent,
@@ -11,28 +15,24 @@ import { Button } from "../ui/button";
 import {
     AlertDialog,
     AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import CounterButton from "./counter-button";
 
 import { CircleCheck, ShoppingCartIcon, Trash } from "lucide-react";
-import CounterButton from "./counter-button";
+
 import { useCartStore } from "@/store/cartStore";
-import Image from "next/image";
-import { useCheckoutStore } from "@/store/checkoutStore";
-import Link from "next/link";
-import { useState } from "react";
 import { useOrdersStore } from "@/store/ordersStore";
+import { useCheckoutStore } from "@/store/checkoutStore";
+
 
 interface ShoppingCartProps {
     isButtonMovel: boolean
 };
-
 
 const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
     const side = isButtonMovel ? "left" : "right";

@@ -12,14 +12,12 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-
+} from "@/components/ui/navigation-menu";
+import HeaderShoppingCart from "./shopping-cart";
 
 import {
     House, ListOrdered,
-    LogOut, Menu, Percent,
-    ShoppingCart,
-    Trash
+    LogOut, Menu, Percent
 } from "lucide-react";
 
 import Link from "next/link";
@@ -27,8 +25,6 @@ import Link from "next/link";
 import { auth } from "auth";
 
 import { userLogout } from "@/actions/authActions";
-import CounterButton from "./counter-button";
-import HeaderShoppingCart from "./shopping-cart";
 
 
 const Header = async () => {
@@ -40,6 +36,7 @@ const Header = async () => {
         { text: "Catálogo", icon: ListOrdered, link: "/catalog" },
     ];
 
+    
     return (
         <header className={`py-12 px-6 flex items-center justify-between lg:px-14 lg:py-14 2xl:px-24`}>
             {/* Menu Mobile */}

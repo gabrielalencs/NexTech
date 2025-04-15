@@ -1,8 +1,10 @@
 import { Products } from "@/types/Products";
+
 import { ArrowDown } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
+
 
 interface ProductItemProps {
     productInformation: Products;

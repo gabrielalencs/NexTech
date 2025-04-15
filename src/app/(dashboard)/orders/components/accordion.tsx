@@ -1,11 +1,14 @@
 "use client"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 import { useOrdersStore } from "@/store/ordersStore";
 
-const AccordionItems = () => {
 
+const AccordionItems = () => {
     const { orders } = useOrdersStore();
+
+    if (orders.length === 0) return <h1 className="text-white text-2xl font-semibold absolute mt-10">Nenhum pedido</h1>
 
     const dataAtual = new Date();
     const dataFormatada = dataAtual.toLocaleDateString("pt-BR", {
@@ -17,8 +20,6 @@ const AccordionItems = () => {
         hour: "2-digit",
         minute: "2-digit",
     });
-
-    if (orders.length === 0) return <h1 className="text-white text-2xl font-semibold absolute mt-10">Nenhum pedido</h1>
 
 
     return (
@@ -36,14 +37,17 @@ const AccordionItems = () => {
                                 Criado em {dataFormatada} às {horaAtual}
                             </p>
                         </div>
+
                         <div>
                             <h3 className="font-bold">Status</h3>
                             <p className="text-sm text-primary">Pendente</p>
                         </div>
+
                         <div>
                             <h3 className="font-bold">Data</h3>
                             <p className="text-sm text-primary">{dataFormatada}</p>
                         </div>
+                        
                         <div>
                             <h3 className="font-bold">Pagamento</h3>
                             <p className="text-sm text-primary">Cartão</p>
@@ -75,7 +79,6 @@ const AccordionItems = () => {
                                     <span className="truncate font-semibold text-xl block">
                                         R$ {(product.basePrice - (product.basePrice * product.discountPercentage / 100)).toFixed(2)}
                                     </span>
-
                                     <span className="truncate text-right block text-xs line-through opacity-75 lg:text-sm">
                                         R$ {(product.basePrice).toFixed(2)}
                                     </span>
