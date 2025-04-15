@@ -8,12 +8,26 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "../ui/button";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
-import { ShoppingCartIcon, Trash } from "lucide-react";
+import { CircleCheck, ShoppingCartIcon, Trash } from "lucide-react";
 import CounterButton from "./counter-button";
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import { useCounterStore } from "@/store/counterProductStore";
+import { useCheckoutStore } from "@/store/checkoutStore";
+import Link from "next/link";
+import { useState } from "react";
+import { useOrdersStore } from "@/store/ordersStore";
 
 interface ShoppingCartProps {
     isButtonMovel: boolean
@@ -23,20 +37,35 @@ interface ShoppingCartProps {
 const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
     const side = isButtonMovel ? "left" : "right";
 
-    const { products, removeProduct, updateQuantity, getTotalItems, getTotalPrice } = useCartStore();
+    const {
+        products, removeProduct, updateQuantity,
+        getTotalItems, getTotalPrice, clearCart
+    } = useCartStore();
+    const { addOrder } = useOrdersStore();
+    const { setCheckoutClicked } = useCheckoutStore();
+
+    const [openDialog, setOpenDialog] = useState(false);
+
+    function finalizePurchase() {
+        setCheckoutClicked();
+
+        addOrder(products.map(p => ({
+            ...p,
+            orderDate: new Date().toISOString(),
+            status: "pending"
+        })));
+
+        clearCart();
+        setOpenDialog(true);;
+    };
 
 
     const totalItems = getTotalItems();
-    // Subtotal: soma dos produtos (já com desconto individual, se existir)
     const subtotal = getTotalPrice();
-
-    // Desconto adicional de 10% no carrinho
     const discountValue = subtotal * 0.10;
 
-    // Total final após aplicar os 10% de desconto
     const total = subtotal - discountValue;
 
-    // Formatação dos valores para moeda (BRL)
     const formattedSubtotal = new Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "BRL",
@@ -51,6 +80,9 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
         style: "currency",
         currency: "BRL",
     }).format(total);
+
+
+
 
     return (
         <div>
@@ -159,9 +191,13 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
                                         <span className="font-semibold">{formattedTotal}</span>
                                     </div>
 
-                                    <Button className="w-full font-bold justify-center mt-10">
+                                    <Button
+                                        className="w-full font-bold justify-center mt-10"
+                                        onClick={finalizePurchase}
+                                    >
                                         Finalizar Compra
                                     </Button>
+
                                 </div>
                             </>
                         ) :
@@ -172,6 +208,29 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
                     </div>
                 </SheetContent>
             </Sheet>
+
+            <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
+                <AlertDialogContent className="text-white p-5 border-[1px] border-zinc-900 bg-[#171717]">
+                    <AlertDialogHeader>
+                        <AlertDialogTitle className="lg:flex lg:justify-between lg:items-center">
+                            Compra realizada com sucesso!<CircleCheck className="hidden !w-7 !h-7 lg:block" />
+                        </AlertDialogTitle>
+                        <AlertDialogDescription className="text-zinc-300">
+                            Para acompanhar o status do seu pedido, acesse a aba de pedidos na sua conta.
+                            <Link
+                                href="/orders"
+                                className="text-primary font-semibold block mt-3"
+                            >
+                                Ver pedidos
+                            </Link>
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                        <AlertDialogAction className="justify-center">Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     )
 }
