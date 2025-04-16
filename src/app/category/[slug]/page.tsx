@@ -24,7 +24,7 @@ export interface PageProps {
 
 const CategoryProductsPage = async ({ params }: PageProps) => {
 
-    const { slug } = params;
+    const { slug } = await params;
 
 
 

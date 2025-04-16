@@ -17,14 +17,14 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
 
     return (
         <>
-            <div className="bg-[#171717] flex items-center justify-center max-h-[500px] py-10 flex-1 rounded-md">
+            <div className="bg-[#171717] flex items-center justify-center max-h-[500px] py-10 flex-1 rounded-md overflow-hidden">
                 <Image
                     src={currentImage}
                     alt={`Image do produto: ${productName}`}
-                    className="h-auto w-auto max-w-[70%] object-contain"
-                    width={0}
                     height={0}
+                    width={0}
                     sizes="100vw"
+                    className="h-auto max-h-[70%] w-auto max-w-[20%] object-contain lg:max-w-[70%]"
                 />
             </div>
 
@@ -33,15 +33,15 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
                     <div
                         key={index}
                         onClick={() => toggleCurrentImage(imageUrl)}
-                        className="bg-[#171717] flex items-center justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3"
+                        className={`bg-[#171717] border-2 flex items-center duration-200 justify-center p-2 rounded-md flex-1 cursor-pointer w-[150px] h-[120px] sm:p-3 ${currentImage === imageUrl ? "border-primary" : "border-transparent "}`}
                     >
                         <Image
                             src={imageUrl}
                             alt={`Image do produto: ${productName}`}
-                            className="h-auto max-h-[70%] w-auto max-w-[80%]"
-                            width={0}
                             height={0}
+                            width={0}
                             sizes="100vw"
+                            className="h-auto max-h-[70%] w-auto max-w-[80%]"
                         />
                     </div>
                 ))}
