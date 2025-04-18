@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import {
     Headphones, Keyboard, Monitor,
     Mouse, Speaker, Touchpad
@@ -6,13 +9,11 @@ import {
 import MainBanner from "../../../public/banner-hero.webp"
 
 import { buttonVariants } from "@/components/ui/button";
-
-
-import { getDiscountedProducts, getKeyboardProducts, getMouseProducts } from "@/actions/getProducts";
-
-import Image from "next/image";
-import Link from "next/link";
 import ProductCarousel from "./components/product-carousel";
+
+import {
+    getDiscountedProducts, getKeyboardProducts, getMouseProducts
+} from "@/actions/getProducts";
 
 
 export default async function Home() {

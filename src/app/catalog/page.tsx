@@ -1,5 +1,7 @@
-import { LayoutGrid } from "lucide-react"
+import { LayoutGrid } from "lucide-react";
+
 import { prisma } from "auth";
+
 import Image from "next/image";
 import Link from "next/link";
 

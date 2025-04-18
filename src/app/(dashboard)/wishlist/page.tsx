@@ -1,8 +1,11 @@
 "use client"
 
 import ProductItem from "@/components/ui/product-item";
+
 import { useFavoritesStore } from "@/store/favoriteStore";
+
 import { Heart } from "lucide-react"
+
 
 const WishlistPage = () => {
     const { products } = useFavoritesStore();

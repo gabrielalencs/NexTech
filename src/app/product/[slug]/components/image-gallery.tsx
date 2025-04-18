@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+
 interface ImageGalleryProps {
     productGallery: string[];
     productName: string;

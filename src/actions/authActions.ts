@@ -1,11 +1,9 @@
-"use server";
+"use server"
 
 import { signIn, signOut } from "auth";
-
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
 
 export async function signInAction(formData: FormData) {
     const providerId = formData.get("providerId") as string;
@@ -36,6 +34,6 @@ export async function registerUser(formData: FormData) {
     return newUser;
 }
 
-export async function userLogout () {
+export async function userLogout() {
     await signOut();
 }

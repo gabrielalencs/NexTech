@@ -1,10 +1,13 @@
-"use client";
+"use client"
 
-import { useToast } from "@/hooks/use-toast";
-import { useFavoritesStore } from "@/store/favoriteStore";
-import { Products } from "@/types/Products";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+
+import { useToast } from "@/hooks/use-toast";
+
+import { useFavoritesStore } from "@/store/favoriteStore";
+
+import { Products } from "@/types/Products";
 
 
 interface FavoriteButtonProps {

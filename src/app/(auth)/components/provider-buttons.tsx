@@ -1,13 +1,16 @@
-"use client";
+"use client"
+
 import { useEffect, useState } from "react";
 import { getProviders } from "next-auth/react";
-import { Button } from "../../../components/ui/button";
+
 import { signInAction } from "@/actions/authActions";
+
+import { Button } from "../../../components/ui/button";
+
 
 const icons = [
     { name: "Google", icon: "https://img.icons8.com/?size=100&id=17904&format=png&color=FFFFFF" },
 ];
-
 
 export default function ProviderButtons() {
     const [providers, setProviders] = useState<any>(null);
@@ -23,6 +26,7 @@ export default function ProviderButtons() {
         return icon?.icon ?? "";
     };
 
+    
     return (
         <>
             {Object.values(providers).map((provider: any) => {

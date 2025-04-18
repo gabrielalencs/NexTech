@@ -1,7 +1,12 @@
-
 import { prisma } from "auth";
+
 import ProductItem from "@/components/ui/product-item";
-import { Headphones, Keyboard, Monitor, Mouse, Speaker, Touchpad } from "lucide-react";
+
+import { 
+    Headphones, Keyboard, Monitor, 
+    Mouse, Speaker, Touchpad 
+} from "lucide-react";
+
 
 const categoryIcons = {
     mouses: Mouse,
@@ -12,6 +17,7 @@ const categoryIcons = {
     touchpads: Touchpad,
 } as const;
 
+
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
     ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }
     : T
@@ -21,13 +27,8 @@ export interface PageProps {
     searchParams?: any;
 }
 
-
 const CategoryProductsPage = async ({ params }: PageProps) => {
-
     const { slug } = await params;
-
-
-
 
     const category = await prisma.category.findFirst({
         where: { slug },

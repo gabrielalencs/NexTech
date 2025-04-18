@@ -18,7 +18,6 @@ import { registerUser } from "@/actions/authActions";
 const SignUpPage = () => {
     const [error, setError] = useState("");
 
-
     const handleSubmit = async (formData: FormData) => {
         try {
             await registerUser(formData);

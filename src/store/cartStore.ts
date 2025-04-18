@@ -1,6 +1,6 @@
-import { Products } from '@/types/Products';
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { Products } from "@/types/Products";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface CartItem extends Products {
     quantity: number;
@@ -50,7 +50,7 @@ export const useCartStore = create<CartState>()(
             clearCart: () => set({ products: [] })
         }),
         {
-            name: 'cart-storage',
+            name: "cart-storage",
             storage: createJSONStorage(() => localStorage)
         }
     )

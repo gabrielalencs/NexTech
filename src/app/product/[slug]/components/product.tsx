@@ -1,25 +1,29 @@
 "use client"
 
-import React from "react"
-import ImageGallery from "./image-gallery"
-import CounterButton from "@/components/ui/counter-button"
-import FavoriteButton from "./favorite-button"
-import { Separator } from "@radix-ui/react-separator"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, Truck } from "lucide-react"
-import { Products } from "@/types/Products"
-import { useCartStore } from "@/store/cartStore"
-import { useCounterStore } from "@/store/counterProductStore"
-import { useToast } from "@/hooks/use-toast"
-import { useSession } from "next-auth/react"
+import React from "react";
+import { useSession } from "next-auth/react";
+import { useToast } from "@/hooks/use-toast";
+
+import { ArrowDown, Truck } from "lucide-react";
+
+import ImageGallery from "./image-gallery";
+import CounterButton from "@/components/ui/counter-button";
+import FavoriteButton from "./favorite-button";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+
+import { Products } from "@/types/Products";
+
+import { useCartStore } from "@/store/cartStore";
+import { useCounterStore } from "@/store/counterProductStore";
+
 
 interface ProductProps {
     productInfo: Products
 }
 
 const ProductContainer = ({ productInfo }: ProductProps) => {
-
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     const { toast } = useToast();
     const { addProduct } = useCartStore();
     const {
@@ -44,7 +48,6 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
 
         addProduct(productInfo, productCounter);
         productResetCounter();
-
     };
 
 
