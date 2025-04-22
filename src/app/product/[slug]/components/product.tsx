@@ -52,15 +52,15 @@ const ProductContainer = ({ productInfo }: ProductProps) => {
 
 
     return (
-        <div className="flex flex-col gap-10 lg:flex-row">
-            <div className="flex flex-col gap-8 lg:flex-[1.3]">
+        <div className="flex flex-col gap-10 xl:flex-row">
+            <div className="flex flex-col gap-8 max-w-[800px] md:mx-auto xl:flex-[1.3]">
                 <ImageGallery
                     productGallery={productInfo?.imageUrls}
                     productName={productInfo?.name}
                 />
             </div>
 
-            <div className="max-w-[600px] md:mx-auto lg:flex-1 lg:flex lg:flex-col lg:justify-between lg:gap-5">
+            <div className="max-w-[600px] md:mx-auto xl:flex-1 xl:flex xl:flex-col xl:justify-between xl:gap-5">
                 <div className="flex justify-between">
                     <div>
                         <h3 className="text-lg sm:text-xl font-medium text-white md:text-2xl">{productInfo?.name}</h3>

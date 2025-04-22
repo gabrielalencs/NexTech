@@ -36,7 +36,7 @@ const Header = async () => {
         { text: "Catálogo", icon: ListOrdered, link: "/catalog" },
     ];
 
-    
+
     return (
         <header className={`py-12 px-6 flex items-center justify-between lg:px-14 lg:py-14 2xl:px-24`}>
             {/* Menu Mobile */}
@@ -127,13 +127,16 @@ const Header = async () => {
                                 )}
 
                             {navItems.map((buttonText, index) => (
-                                <Button
+                                <Link
+                                    className="block w-full"
+                                    href={buttonText.link} 
                                     key={index}
-                                    variant="outline"
                                 >
-                                    <buttonText.icon />
-                                    {buttonText.text}
-                                </Button>
+                                    <Button variant="outline" className="w-full">
+                                        <buttonText.icon />
+                                        {buttonText.text}
+                                    </Button>
+                                </Link>
                             ))}
                         </div>
                     </SheetContent>

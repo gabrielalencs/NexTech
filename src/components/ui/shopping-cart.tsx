@@ -213,7 +213,7 @@ const HeaderShoppingCart = ({ isButtonMovel }: ShoppingCartProps) => {
                 <AlertDialogContent className="text-white p-5 border-[1px] border-zinc-900 bg-[#171717]">
                     <AlertDialogHeader>
                         <AlertDialogTitle className="lg:flex lg:justify-between lg:items-center">
-                            Compra realizada com sucesso!<CircleCheck className="hidden !w-7 !h-7 lg:block" />
+                            Compra realizada com sucesso! <CircleCheck className="hidden !w-7 !h-7 lg:block" />
                         </AlertDialogTitle>
                         <AlertDialogDescription className="text-zinc-300">
                             Para acompanhar o status do seu pedido, acesse a aba de pedidos na sua conta.

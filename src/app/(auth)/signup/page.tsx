@@ -1,6 +1,8 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,9 +10,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import ProviderButtons from "@/app/(auth)/components/provider-buttons";
-
-import Link from "next/link";
-import { signIn } from "next-auth/react";
 
 import { registerUser } from "@/actions/authActions";
 
@@ -32,11 +31,11 @@ const SignUpPage = () => {
         }
     };
 
-    useEffect(() => {
-        document.querySelector(".overlayMenuMobile")?.classList?.add("remove-screen");
-        document.querySelector(".menuMobile")?.classList?.add("remove-screen");
-        document.body?.classList?.add("remove-hidden-scroll");
-    }, []);
+    // useEffect(() => {
+    //     document.querySelector(".overlayMenuMobile")?.classList?.add("remove-screen");
+    //     document.querySelector(".menuMobile")?.classList?.add("remove-screen");
+    //     document.body?.classList?.add("remove-hidden-scroll");
+    // }, []);
 
 
     return (

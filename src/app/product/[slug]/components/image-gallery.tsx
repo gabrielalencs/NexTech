@@ -18,14 +18,14 @@ const ImageGallery = ({ productGallery, productName }: ImageGalleryProps) => {
 
     return (
         <>
-            <div className="bg-[#171717] flex items-center justify-center max-h-[500px] py-10 flex-1 rounded-md overflow-hidden">
+            <div className="bg-[#171717] flex h-[380px] w-full items-center justify-center py-10  rounded-md overflow-hidden lg:flex-1 lg:max-h-[500px]">
                 <Image
                     src={currentImage}
                     alt={`Image do produto: ${productName}`}
                     height={0}
                     width={0}
                     sizes="100vw"
-                    className="h-auto max-h-[70%] w-auto max-w-[20%] object-contain lg:max-w-[70%]"
+                    className="h-auto max-h-[70%] w-auto max-w-[60%] object-contain lg:max-w-[70%]"
                 />
             </div>
 
